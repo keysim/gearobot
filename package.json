@@ -1,0 +1,29 @@
+{
+  "name": "gearobot",
+  "version": "0.0.1",
+  "description": "A programming game",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/keysim/gearobot.git"
+  },
+  "keywords": [
+    "gearobot",
+    "keysim",
+    "game",
+    "htm5"
+  ],
+  "author": "Keysim",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/keysim/gearobot/issues"
+  },
+  "homepage": "https://github.com/keysim/gearobot#readme",
+  "dependencies": {
+    "express": "^4.15.2",
+    "phaser-ce": "^2.7.3"
+  }
+}
