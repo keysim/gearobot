@@ -1,6 +1,7 @@
 class Map {
     constructor() {
         this.tex = ['tree', 'bush', 'brick', 'dirt', 'grass', 'water'];
+        this.walkable = ['brick', 'dirt', 'grass'];
         this.water = [];
         this.tiles = [
             2, 2, 2,
@@ -77,6 +78,16 @@ class Map {
                     game.add.tween(tile).to({ isoZ: 0 }, 300, Phaser.Easing.Quadratic.InOut, true);
             }
         });
+    }
+    getBlock(x, y){
+        var blockType = this.tiles[x + y * this.w];
+        if (x < 0 || x >= this.w || y < 0 || y >= this.h)
+            return "out";
+        else if(this.tex[blockType] == "tree" || this.tex[blockType] == "bush")
+            return "block";
+        else if(this.tex[blockType] == "water")
+            return "water";
+        return "empty"; // this.walkable.indexOf(this.tex[blockType]) >= 0 : true
     }
     debug(active) {
         if(active) {

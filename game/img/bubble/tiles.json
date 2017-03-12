@@ -1,0 +1,44 @@
+{"frames": {
+
+"empty":
+{
+	"frame": {"x":1,"y":1,"w":100,"h":90},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":100,"h":90},
+	"sourceSize": {"w":100,"h":90}
+},
+"hit":
+{
+	"frame": {"x":103,"y":1,"w":100,"h":90},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":100,"h":90},
+	"sourceSize": {"w":100,"h":90}
+},
+"tree":
+{
+	"frame": {"x":205,"y":1,"w":100,"h":90},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":100,"h":90},
+	"sourceSize": {"w":100,"h":90}
+},
+"water":
+{
+	"frame": {"x":307,"y":1,"w":100,"h":90},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":100,"h":90},
+	"sourceSize": {"w":100,"h":90}
+}},
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "tiles.png",
+	"format": "RGBA8888",
+	"size": {"w":408,"h":92},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:b96e7e1c8b83f0896c4d7d0eaa10d269:46c24a60a48044128dba26b344531fa8:accbe1e7e294ded8391337fc1c446319$"
+}
+}

@@ -5,8 +5,8 @@ var BasicGame = function (game) { };
 BasicGame.Boot = function (game) { };
 
 var map = new Map();
-var bot = new Bot(1, 3, "BL", 1);
-var bot2 = new Bot(1, 11, "TR", 2);
+var bot2 = new Bot(1, 3, "DL", 1);
+var bot = new Bot(1, 11, "UR", 2);
 var input = new Input();
 
 BasicGame.Boot.prototype =
@@ -18,14 +18,13 @@ BasicGame.Boot.prototype =
 
         game.plugins.add(new Phaser.Plugin.Isometric(game));
 
-        game.load.atlasJSONHash('tileset', 'img/map/tiles.png', 'img/map/tiles.json');
-
         game.physics.startSystem(Phaser.Plugin.Isometric.ISOARCADE);
         game.iso.anchor.setTo(0.82, 0.1);
 
-        botTile.forEach(function (name) {
-            game.load.image(name, 'img/bot/'+name+'.png');
-        });
+        game.load.atlasJSONHash('tileset', 'img/map/tiles.png', 'img/map/tiles.json');
+        game.load.atlasJSONHash("bot", 'img/bot/tiles.png', 'img/bot/tiles.json');
+        game.load.atlasJSONHash("bubble", 'img/bubble/tiles.png', 'img/bubble/tiles.json');
+
     },
     create: function () {
         cursorPos = new Phaser.Plugin.Isometric.Point3();
@@ -45,13 +44,13 @@ BasicGame.Boot.prototype =
         map.update();
         input.update();
         if(sort) {
-            console.log("Tiles sorted.");
             game.iso.topologicalSort(isoGroup);
             sort = false;
         }
+        bot2.update();
     },
     render: function () {
-        map.debug(true);
+        map.debug(false);
     }
 };
 
