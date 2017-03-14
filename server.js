@@ -10,5 +10,5 @@ app.use("/", express.static(__dirname + '/game'));
 });*/
 
 app.listen(1234, function () {
-    console.log('Example app listening on port 1234!')
+    console.log('Game on port 1234!')
 });

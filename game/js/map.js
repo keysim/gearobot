@@ -1,9 +1,12 @@
+var trees = [];
 class Map {
     constructor() {
+        this.w = 10;
+        this.h = 10;
         this.tex = ['tree', 'bush', 'brick', 'dirt', 'grass', 'water'];
         this.walkable = ['brick', 'dirt', 'grass'];
         this.water = [];
-        this.tiles = [
+        /*this.tiles = [
             2, 2, 2,
             2, 0, 2,
             2, 2, 2,
@@ -19,35 +22,92 @@ class Map {
             2, 2, 2,
             2, 0, 2,
             2, 2, 2
-        ];
-        this.w = 3;
-        this.h = 15;
+        ];*/
+        this.tiles = [];
+        for (var y = 0; y < blockSize * this.h; y += blockSize) {
+            for (var x = 0; x < blockSize * this.w; x += blockSize) {
+                //if (x == 0 || y == 0 || x == blockSize * (this.w - 1) || y == blockSize * (this.h - 1))
+                  //  this.tiles.push(4);
+                var r = Math.floor(Math.random() * 10);
+                if(r > 1)
+                    this.tiles.push(Math.floor((Math.random() * (this.tex.length - 3)) + 2));
+                else if (r == 0)
+                    this.tiles.push(Math.floor((Math.random() * 2)));
+                else
+                    this.tiles.push(5);
+            }
+        }
+        var biomeInfo = [];
+        for(var i = 0; i < 4; i++){
+            biomeInfo.push({});
+            biomeInfo[i].type = i + 2;
+            biomeInfo[i].x = Math.floor((Math.random() * this.w));
+            biomeInfo[i].y = Math.floor((Math.random() * this.h));
+        }
+        var field = [];
+        for (var y = 0; y < 10; y++) {
+            for (var x = 0; x < 10; x++) {
+                var nearest = '.';
+                var  dist = 99999999;
+                for (var z = 0; z < biomeInfo.length; z++) {
+                    var xdiff = biomeInfo[z].x - x;
+                    var ydiff = biomeInfo[z].y - y;
+                    var cdist = xdiff*xdiff + ydiff*ydiff;
+                    if (cdist < dist) {
+                        nearest = biomeInfo[z].type;
+                        dist = cdist;
+                    }
+                }
+                field.push(nearest);
+            }
+        }
+        this.tiles = field;
+        for(var i = 0; i < 6; i++) {
+            var x = Math.floor((Math.random() * this.w));
+            var y = Math.floor((Math.random() * this.h));
+            if(this.tiles[x + (y * 10)] != 5 && this.tiles[x + (y * 10)] > 2) {
+                trees.push({was : this.tiles[x + (y * 10)], pos: x + (y * 10)});
+                this.tiles[x + (y * 10)] = 0;
+            }
+            else
+                i--;
+        }
+        for(var i = 0; i < 4; i++) {
+            var x = Math.floor((Math.random() * this.w));
+            var y = Math.floor((Math.random() * this.h));
+            if(this.tiles[x + (y * 10)] != 5 && this.tiles[x + (y * 10)] > 2) {
+                trees.push({was : this.tiles[x + (y * 10)], pos: x + (y * 10)});
+                this.tiles[x + (y * 10)] = 1;
+            }
+            else
+                i--;
+        }
     }
     init() {
         var i = 0, tile;
         for (var y = 0; y <= blockSize * (this.h - 1); y += blockSize) {
             for (var x = 0; x <= blockSize * (this.w - 1); x += blockSize) {
                 tile = game.add.isoSprite(x, y, 0, 'tileset', this.tex[this.tiles[i]], isoGroup);
-                tile.anchor.set(0.5, 0);
+                tile.static = true;
+                tile.anchor.set(0.5, 0.05);
                 tile.smoothed = false;
                 if(tile.body)
                     tile.body.moves = false;
-                if (this.tiles[i] === 0)// Tree
-                    tile.anchor.set(0.5, 0.66);
-                else if(this.tiles[i] === 1)// Bush
-                    tile.anchor.set(0.5, 0.03);
-                if (this.tiles[i] == 5) {
-                    tile.scale.x = game.rnd.pick([-1, 1]);
-                    tile.static = true;
+                if (this.tiles[i] === 0) {// Tree
+                    tile.anchor.set(0.5, 0.699);//0.5, 0.66);
                 }
-                if (this.tiles[i] === 5) {
+                else if(this.tiles[i] === 1)// Bush
+                    tile.anchor.set(0.5, 0.14);//0.5, 0.03);
+                else if (this.tiles[i] === 5) {
+                    //tile.scale.x = game.rnd.pick([-1, 1]);
                     this.water.push(tile);
                 }
+                else
+                    tile.static = false;
                 if (this.tiles[i] === 0 || this.tiles[i] === 1) {
+                    tile = game.add.isoSprite(x, y, 0, 'tileset', this.tex[getWas(i)], isoGroup);
                     tile.static = true;
-                    tile = game.add.isoSprite(x, y, -1, 'tileset', this.tex[3], isoGroup);
-                    tile.static = true;
-                    tile.anchor.set(0.5, 0);
+                    tile.anchor.set(0.5, 0.05);
                     tile.smoothed = false;
                     tile.body.moves = false;
                 }
@@ -57,8 +117,10 @@ class Map {
     }
     update() {
         this.water.forEach(function (w) {
-            w.isoZ = (-4 * Math.sin((game.time.now + (w.isoX * 7)) * 0.004)) + (-1 * Math.sin((game.time.now + (w.isoY * 8)) * 0.005)) - 6;
-            w.alpha = Phaser.Math.clamp(1 + (w.isoZ * 0.01), 0.2, 1);
+            w.isoZ = (-4 * Math.sin((game.time.now + (w.isoX * 8)) * 0.004)) + (-1 * Math.sin((game.time.now + (w.isoY * 8)) * 0.005))-2;
+            w.alpha = Phaser.Math.clamp(1 + (w.isoZ * 0.03), 0.2, 1);
+            //w.isoZ = (-4 * Math.sin((game.time.now + (w.isoX * 7)) * 0.004)) + (-1 * Math.sin((game.time.now + (w.isoY * 8)) * 0.005)) - 6;
+            //w.alpha = Phaser.Math.clamp(1 + (w.isoZ * 0.01), 0.2, 1);
         });
         game.iso.unproject(game.input.activePointer.position, cursorPos);
         isoGroup.forEach(function (tile) {
@@ -98,4 +160,12 @@ class Map {
             game.debug.text("V : " + 0.1, 2, game.world.height - 2, "#ffff00");
         }
     }
+}
+
+function getWas(pos) {
+    for (var i = 0; i < trees.length; i++) {
+        if(trees[i].pos == pos)
+            return trees[i].was;
+    }
+    return 3;
 }
