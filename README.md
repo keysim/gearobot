@@ -1,19 +1,22 @@
-![Image of title](https://raw.githubusercontent.com/keysim/gearobot/master/doc/img/title.png)
-# GeaRobot (Alpha)
+![Image of the bots](https://raw.githubusercontent.com/keysim/gearobot/master/doc/img/title.png)
+## Short
 GeaRobot is a browser-based bot fighting game in which you program your artificial intelligence to successfully defeat your enemy.
-The main idea of the game is to create with a high level programming language a artificial intelligence of a little Gear Bot. At the begin of the match, the two players will have to write their code using a list of functionnalities displayed
+The main idea of the game is to create with a high level programming language a artificial intelligence of a little Gear Bot. 
 
 ## Motivation and ambition
 The project was born during a Game design course at Beijing Jiaotong University in China between two students who wanted to create a game entirely based on programming. I (KeySim) dreamed to make a programming game since the first time I started to learn programming languages. In love with programmation, I wanted to share it through a easy access game so everybody could join and try it.
 GeaRobot's ambition is to place programming in the middle of a funny, entertaining, playful browser-based video game so everybody even beginners can enjoy programmation and hopefully start learning programming languages afterward.
 
 
-# The game (You just losed)
+# The game (You losed)
+
+## Description
+At the begin of the match, the two players will have to write their code using a list of functionnalities displayed ...
 
 ## Bots
-The bot is the character which will be executing the actions of the script the player write.
-#### Evolution of the bot design
-The character has been made by my self. I'm pretty bad at designing as you can see but I did my best trying the character match the maps.
+The bot is the character which will be executing actions of the player's script.
+
+The character has been made by my self :
 
 ![Image of the bots](https://raw.githubusercontent.com/keysim/gearobot/master/doc/img/botDesign.png)
 
@@ -35,6 +38,7 @@ Specifications :
 
 ## Funny bubble idea
 
+![Image of the bubbles](https://raw.githubusercontent.com/keysim/gearobot/master/doc/img/bubbles.png)
 
 # Installation
 
@@ -64,7 +68,7 @@ Made with :
 ---|---
 [Simon menard](keysim.fr) | [Vireth Thach sok](vireth.com)
 
-**A special thanks to the leekwar community and my wonderful girlfriend who give me some ideas.**
+**A special thanks to the leekwar community and my wonderful girlfriend who gived me some ideas.**
 
 You can submit your ideas if you want to help, just answer to this ticket :
 
