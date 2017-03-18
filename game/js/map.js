@@ -4,8 +4,8 @@ class Map {
         this.tiles = [];
         this.w = 10;
         this.h = 10;
-        this.tex = ['tree', 'bush', 'brick', 'dirt', 'grass', 'water'];
-        //this.walkable = ['brick', 'dirt', 'grass'];
+        this.tex = ['tree', 'bush', 'brick', 'soil', 'grass', 'water'];
+        //this.walkable = ['brick', 'soil', 'grass'];
         this.water = [];
         var x = 0;
         var y = 0;
@@ -172,12 +172,12 @@ class Map {
         });*/
     }
     getBlock(x, y){
-        var blockType = this.tiles[x + y * this.w];
         if (x < 0 || x >= this.w || y < 0 || y >= this.h)
             return "out";
-        else if(this.tex[blockType] == "tree" || this.tex[blockType] == "bush")
+        var blockType = this.tex[this.tiles[x + y * this.w]];
+        if(blockType == "tree" || blockType == "bush")
             return "block";
-        else if(this.tex[blockType] == "water")
+        else if(blockType == "water")
             return "water";
         return "empty"; // this.walkable.indexOf(this.tex[blockType]) >= 0 : true
     }
