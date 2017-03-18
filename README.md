@@ -59,7 +59,7 @@ Made with :
 
 
 ## Authors & Contributors
-[![Keysim](https://raw.githubusercontent.com/keysim/gearobot/master/doc/img/keysim.jpg)](http://keysim.fr) | [![Vireth](https://raw.githubusercontent.com/keysim/gearobot/master/doc/img/vireth.jpg)](http://vireth.com)
+[![Keysim](https://raw.githubusercontent.com/keysim/gearobot/master/doc/img/keysim.png)](http://keysim.fr) | [![Vireth](https://raw.githubusercontent.com/keysim/gearobot/master/doc/img/vireth.png)](http://vireth.com)
 ---|---
 [Simon menard](keysim.fr) | [Vireth Thach sok](vireth.com)
 
