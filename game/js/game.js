@@ -33,9 +33,9 @@ BasicGame.Boot.prototype =
         game.plugins.add(new Phaser.Plugin.Isometric(game));
 
         game.physics.startSystem(Phaser.Plugin.Isometric.ISOARCADE);
-        //if(params.mapType == "small")
-        //    game.iso.anchor.setTo(0.82, 0.1);
-        //else
+        if(params.mapType == "small")
+            game.iso.anchor.setTo(0.82, 0.1);
+        else
             game.iso.anchor.setTo(0.5, 0.05);
 
         game.load.atlasJSONHash('tileset', 'img/map/tiles.png', 'img/map/tiles.json');
@@ -53,8 +53,8 @@ BasicGame.Boot.prototype =
         isoGroup.physicsBodyType = Phaser.Plugin.Isometric.ISOARCADE;
 
         map.init();
-        //bot.init();
-        //bot2.init();
+        bot.init();
+        bot2.init();
         input.init();
     },
     update: function () {
@@ -64,8 +64,8 @@ BasicGame.Boot.prototype =
             game.iso.topologicalSort(isoGroup, 4);
             sort = false;
         }
-        //bot.update();
-        //bot2.update();
+        bot.update();
+        bot2.update();
     },
     render: function () {
         map.render();

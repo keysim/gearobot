@@ -16,7 +16,7 @@
 	"spriteSourceSize": {"x":0,"y":0,"w":130,"h":78},
 	"sourceSize": {"w":130,"h":78}
 },
-"dirt":
+"soil":
 {
 	"frame": {"x":1,"y":453,"w":127,"h":147},
 	"rotated": false,

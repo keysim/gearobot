@@ -11,7 +11,7 @@ class Map {
         var y = 0;
         var i = 0;
         if(params.mapType == "small") {
-            /*this.tiles = [
+            this.tiles = [
                 2, 2, 2,
                 2, 0, 2,
                 2, 2, 2,
@@ -29,8 +29,8 @@ class Map {
                 2, 2, 2
             ];
             this.w = 3;
-            this.h = 15;*/
-            this.tiles = [
+            this.h = 15;
+            /*this.tiles = [
                 9, 9, 9, 9, 9, 5,
                 9, 9, 9, 9, 4, 9,
                 9, 9, 9, 3, 9, 9,
@@ -39,7 +39,7 @@ class Map {
                 0, 9, 9, 9, 9, 9
             ];
             this.w = 6;
-            this.h = 6;
+            this.h = 6;*/
         }
         else if(params.mapType == "random") {
             for (y = 0; y < blockSize * this.h; y += blockSize) {
@@ -119,10 +119,10 @@ class Map {
                 tile.static = true;
                 tile.anchor.set(0.5, 0.05);
                 tile.smoothed = false;
-                this.path.forEach(function (cell) {
+                /*this.path.forEach(function (cell) {
                     if(cell[0] == i % map.w && cell[1] == Math.floor(i / map.w))
                         tile.tint = 0x555555;
-                });
+                });*/
                 if(tile.body)
                     tile.body.moves = false;
                 if (this.tiles[i] === 0) {// Tree

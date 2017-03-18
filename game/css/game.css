@@ -7,7 +7,7 @@ p, a, img, i, form {
     vertical-align: baseline;
 }*/
 body {
-    /*background-color: #1a1a1a;*/
+    background-color: #1a1a1a;
 }
 #game {
     position: relative;

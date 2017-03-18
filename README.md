@@ -7,7 +7,7 @@ The project was born during a Game design course at Beijing Jiaotong University 
 GeaRobot's ambition is to place programming in the middle of a funny, entertaining, playful browser-based video game so everybody even beginners can enjoy programmation and hopefully start learning programming languages afterward.
 
 
-# The game (You just lose)
+# The game (You just losed)
 
 ## Bots
 The bot is the character which will be executing the actions of the script the player write.
@@ -23,17 +23,17 @@ Made from the original [**Isometric tiles texture**](http://opengameart.org/cont
 
 ![Image of the tiles](https://raw.githubusercontent.com/keysim/gearobot/master/doc/img/mapTiles.png)
 
-#### 3 type of map :
-* Arena (3x15)
-* Random (10x10)
-* Biome (10x10)
+#### 3 types of map :
 
+![Image of the maps](https://raw.githubusercontent.com/keysim/gearobot/master/doc/img/maps.png)
 
 Specifications :
 * The soil under the tree or the bush will change to grass if he is in the grass biome
 * The water move to create a nice little effect
+* Every generated is tested to be playable (a Path-Finding is laungh between the two bot which has to be unoccupied)
 
 ## Funny bubble idea
+
 
 # Installation
 
@@ -55,7 +55,7 @@ Now that your server started, you can simply go on your prefered browser to this
 
 Made with :
 * [phaser.io](http://phaser.io) - Javasript Game Framwork
-* [phaser isometric](http://rotates.org/phaser/iso) - Phaser isometric plugin
+* [isometric plugin](http://rotates.org/phaser/iso) - Phaser isometric plugin
 
 
 ## Authors & Contributors
@@ -63,8 +63,9 @@ Made with :
 ---|---
 [Simon menard](keysim.fr) | [Vireth Thach sok](vireth.com)
 
-We are two Epitech students this project is only for our BJTU projects. Somes ideas came from the leekwar community and my wonderfull girlfriend.
-I'm open to receive more ideas from anybody. For that, you just need to answer to the issues Github section on this ticket :
+**A special thanks to the leekwar community and my wonderful girlfriend who give me some ideas.**
+
+You can submit your ideas if you want to help, just answer to this ticket :
 
 >[Yes, I have awesome ideas for the game !](https://github.com/keysim/gearobot/issues/1)
 
