@@ -1,3 +1,4 @@
+![Image of title](https://raw.githubusercontent.com/keysim/gearobot/master/doc/img/title.png)
 # GeaRobot (Alpha)
 GeaRobot is a browser-based bot fighting game in which you program your artificial intelligence to successfully defeat your enemy.
 The main idea of the game is to create with a high level programming language a artificial intelligence of a little Gear Bot. At the begin of the match, the two players will have to write their code using a list of functionnalities displayed
