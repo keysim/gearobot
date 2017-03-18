@@ -26,22 +26,30 @@
                                     <option value="small">Small arena</option>
                                 </select>
                             </div>
-                            <div id="debug" class="checkbox">
-                                <label>
-                                    <input type="checkbox"> Debug mode
-                                </label>
+                            <div class="button-group">
+                                <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">Select cells <span class="caret"></span></button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#" class="small" data-value="option1" tabIndex="-1"><input type="checkbox"/>&nbsp;Option 1</a></li>
+                                    <li><a href="#" class="small" data-value="option2" tabIndex="-1"><input type="checkbox"/>&nbsp;Option 2</a></li>
+                                    <li><a href="#" class="small" data-value="option3" tabIndex="-1"><input type="checkbox"/>&nbsp;Option 3</a></li>
+                                    <li><a href="#" class="small" data-value="option4" tabIndex="-1"><input type="checkbox"/>&nbsp;Option 4</a></li>
+                                    <li><a href="#" class="small" data-value="option5" tabIndex="-1"><input type="checkbox"/>&nbsp;Option 5</a></li>
+                                    <li><a href="#" class="small" data-value="option6" tabIndex="-1"><input type="checkbox"/>&nbsp;Option 6</a></li>
+                                </ul>
                             </div>
+                            <div id="debug" class="checkbox"><label><input type="checkbox"> Debug mode</label></div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Start Game</button>
-                            <button id="save" type="button" class="btn btn-primary">Save changes</button>
+                            <button id="save" type="button" class="btn btn-primary">Generate</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <div id="game"></div>
-        <script src="css/phaser.min.js"></script>
+        <script src="lib/phaser.min.js"></script>
+        <script src="lib/pathfinding-browser.min.js"></script>
         <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
         <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
         <script src="js/menu.js"></script>

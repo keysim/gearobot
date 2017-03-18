@@ -9,22 +9,23 @@ var isoGroup, cursorPos;
 var sort = true;
 var blockSize = 74;
 
-var menu = null;
-var map = null;
-var bot2 = null;
-var bot = null;
-var input = null;
+var params = {mapType:"biome", debug:false};
+var menu = new Menu();
+var map = null, input = null, bot2 = null, bot = null;
+var trees = [];
 
 BasicGame.Boot.prototype =
 {
     preload: function () {
-        console.log("PENIS");
-        sort = true;
-        menu = new Menu();
+        trees = [];
         map = new Map();
-        bot2 = new Bot(1);
-        bot = new Bot(2);
+
+        bot = new Bot(1);
+        bot2 = new Bot(2);
+        map.getPath(bot.cell, bot2.cell);
         input = new Input();
+
+        sort = true;
         game.time.advancedTiming = true;
         game.debug.renderShadow = false;
         game.stage.disableVisibilityChange = true;
@@ -32,8 +33,10 @@ BasicGame.Boot.prototype =
         game.plugins.add(new Phaser.Plugin.Isometric(game));
 
         game.physics.startSystem(Phaser.Plugin.Isometric.ISOARCADE);
-
-        game.iso.anchor.setTo(0.5, 0.05);//0.82, 0.1
+        //if(params.mapType == "small")
+        //    game.iso.anchor.setTo(0.82, 0.1);
+        //else
+            game.iso.anchor.setTo(0.5, 0.05);
 
         game.load.atlasJSONHash('tileset', 'img/map/tiles.png', 'img/map/tiles.json');
         game.load.atlasJSONHash("bot", 'img/bot/tiles.png', 'img/bot/tiles.json');
@@ -50,10 +53,9 @@ BasicGame.Boot.prototype =
         isoGroup.physicsBodyType = Phaser.Plugin.Isometric.ISOARCADE;
 
         map.init();
-        bot.init();
-        bot2.init();
+        //bot.init();
+        //bot2.init();
         input.init();
-        menu.init();
     },
     update: function () {
         map.update();
@@ -62,11 +64,11 @@ BasicGame.Boot.prototype =
             game.iso.topologicalSort(isoGroup, 4);
             sort = false;
         }
-        bot.update();
-        bot2.update();
+        //bot.update();
+        //bot2.update();
     },
     render: function () {
-        map.debug(false);
+        map.render();
     }
 };
 

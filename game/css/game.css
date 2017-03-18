@@ -7,7 +7,7 @@ p, a, img, i, form {
     vertical-align: baseline;
 }*/
 body {
-    background-color: #1a1a1a;
+    /*background-color: #1a1a1a;*/
 }
 #game {
     position: relative;
@@ -20,9 +20,10 @@ body {
     top: 50px;
     position: absolute;
     left: 50px;
+    z-index: 1600;
 }
 
 #myMenu .modal-dialog{
     width: 320px;
-    margin: 10px 0;
+    margin: 20px 0;
 }

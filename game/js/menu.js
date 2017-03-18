@@ -1,10 +1,8 @@
 class Menu {
     constructor(){
         $('#myMenu').modal('show');
-    }
-    init(){
         $("#debug").change(function () {
-            console.log("test");
+            params.debug = !params.debug;
         });
         $('#myMenu').on('hidden.bs.modal', function () {
             $("#game").css({"margin-right":"auto"});
@@ -13,11 +11,13 @@ class Menu {
             $("#game").css({"margin-right":"0"});
         });
         $("#save").click(function () {
+            params.mapType = $("#mapType").val();
             //game.world.removeAll();
             game.state.start('Boot');
         });
     }
+    init(){
+    }
     save(){
-
     }
 }
