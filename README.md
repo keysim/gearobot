@@ -37,7 +37,8 @@ Specifications :
 * Every generated is tested to be playable (a Path-Finding is launch between the two bots which has to be unoccupied)
 
 ## Funny bubble idea
-
+We think about a way to tell the player when his AI is doing something. We were going on an animation way but lack of design knowledge we decided to find a funny and easy way. So we found this bubble idea. 
+Here is two kind of bubble you can see appearing when the AI is going in a wrong direction for example :
 ![Image of the bubbles](https://raw.githubusercontent.com/keysim/gearobot/master/doc/img/bubbles.png)
 
 # Installation
