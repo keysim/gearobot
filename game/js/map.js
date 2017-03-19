@@ -152,24 +152,7 @@ class Map {
             w.isoZ = (-4 * Math.sin((game.time.now + (w.isoX * 8)) * 0.004)) + (-1 * Math.sin((game.time.now + (w.isoY * 8)) * 0.005))-2;
             w.alpha = Phaser.Math.clamp(1 + (w.isoZ * 0.03), 0.2, 1);
         });
-        /*game.iso.unproject(game.input.activePointer.position, cursorPos);
-        isoGroup.forEach(function (tile) {
-            var inBounds = tile.isoBounds.containsXY(cursorPos.x, cursorPos.y);
-            if (!tile.selected && inBounds) {
-                tile.selected = true;
-                if(!tile.player)
-                    tile.tint = 0x86bfda;
-                if(!tile.static)
-                    game.add.tween(tile).to({ isoZ: 30 }, 200, Phaser.Easing.Quadratic.InOut, true);
-            }
-            else if (tile.selected && !inBounds) {
-                tile.selected = false;
-                if(!tile.player)
-                    tile.tint = 0xffffff;
-                if(!tile.static)
-                    game.add.tween(tile).to({ isoZ: 0 }, 300, Phaser.Easing.Quadratic.InOut, true);
-            }
-        });*/
+
     }
     getBlock(x, y){
         if (x < 0 || x >= this.w || y < 0 || y >= this.h)
