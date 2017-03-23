@@ -4,11 +4,55 @@
         <meta charset="UTF-8" />
         <title>Gearobot</title>
         <link rel="icon" href="img/icon.png" />
-        <link href="/node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/material-icons.css" rel="stylesheet">
+        <link href="/node_modules/materialize-css/dist/css/materialize.min.css" rel="stylesheet" media="screen,projection"/>
         <link href="css/game.css" rel="stylesheet">
     </head>
     <body>
+        <ul id="slide-out" class="side-nav">
+            <li><div class="userView">
+                <a href="#"><img class="" src="img/icon.png"></a>
+            </div></li>
+            <li>
+                <div class="row">
+                    <div class="col s10 offset-s1">
+                        <a id="typeBtn" class='dropdown-button btn btn-block purple' data-beloworigin="true" href='#' data-activates='dropdown1'><i class="material-icons left">filter_hdr</i>Biome</a>
+
+                        <ul id='dropdown1' class='dropdown-content'>
+                            <li><a data-type="biome" class="type" href="#"><i class="material-icons left">filter_hdr</i>Biome</a></li>
+                            <li><a data-type="random" class="type" href="#"><i class="material-icons left">gesture</i>Random</a></li>
+                            <li><a data-type="arena" class="type" href="#"><i class="material-icons left">folder</i>Arena</a></li>
+                            <li><a data-type="test" class="type" href="#"><i class="material-icons left">folder</i>Test</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="row">
+                    <div class="col s3 offset-s2">
+                        <label class="active" for="debug">DEBUG</label>
+                    </div>
+                    <div class="col s6">
+                        <div class="switch" id="debug">
+                            <label>
+                                Off
+                                <input type="checkbox">
+                                <span class="lever"></span>
+                                On
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li><a href="#!">Second Link</a></li>
+            <li><div class="divider"></div></li>
+            <li><a class="subheader">Subheader</a></li>
+            <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+        </ul>
         <div id="menu">
+            <a href="#" data-activates="slide-out" class="button-collapse waves-effect waves-light btn-large purple">Menu</a>
+        </div>
+        <!--<div id="menu">
             <button id="btnMenu" class="btn btn-primary btn-lg pull-right" data-toggle="modal" data-target="#myMenu">Menu</button>
             <div class="modal fade" id="myMenu" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                 <div class="modal-dialog" role="document">
@@ -23,19 +67,8 @@
                                 <select id="mapType" class="form-control">
                                     <option value="biome">Biome</option>
                                     <option value="random">Random</option>
-                                    <option value="small">Small arena</option>
+                                    <option value="arena">Small arena</option>
                                 </select>
-                            </div>
-                            <div class="button-group">
-                                <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">Select cells <span class="caret"></span></button>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#" class="small" data-value="option1" tabIndex="-1"><input type="checkbox"/>&nbsp;Option 1</a></li>
-                                    <li><a href="#" class="small" data-value="option2" tabIndex="-1"><input type="checkbox"/>&nbsp;Option 2</a></li>
-                                    <li><a href="#" class="small" data-value="option3" tabIndex="-1"><input type="checkbox"/>&nbsp;Option 3</a></li>
-                                    <li><a href="#" class="small" data-value="option4" tabIndex="-1"><input type="checkbox"/>&nbsp;Option 4</a></li>
-                                    <li><a href="#" class="small" data-value="option5" tabIndex="-1"><input type="checkbox"/>&nbsp;Option 5</a></li>
-                                    <li><a href="#" class="small" data-value="option6" tabIndex="-1"><input type="checkbox"/>&nbsp;Option 6</a></li>
-                                </ul>
                             </div>
                             <div id="debug" class="checkbox"><label><input type="checkbox"> Debug mode</label></div>
                         </div>
@@ -46,14 +79,15 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>-->
         <div id="game"></div>
         <script src="lib/phaser.min.js"></script>
         <script src="lib/pathfinding-browser.min.js"></script>
         <script src="lib/jquery.min.js"></script>
-        <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="/node_modules/materialize-css/dist/js/materialize.min.js"></script>
         <script src="js/menu.js"></script>
         <script src="/node_modules/phaser-plugin-isometric/dist/phaser-plugin-isometric.js"></script>
+        <script src="js/mapLoader.js"></script>
         <script src="js/map.js"></script>
         <script src="js/bubble.js"></script>
         <script src="js/bot.js"></script>

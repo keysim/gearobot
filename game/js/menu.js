@@ -1,19 +1,23 @@
 class Menu {
     constructor(){
-        $('#myMenu').modal('show');
+        //$('#myMenu').modal('show');
+        $(".button-collapse").sideNav();
+        $('.button-collapse').sideNav('show');
+        $('.dropdown-button').dropdown();
+        $(".type").click(function () {
+            $("#typeBtn").html($(this).html());
+            $('.dropdown-button').dropdown('close');
+            m.type = $(this).data("type");
+            game.state.start('Boot');
+        });
         $("#debug").change(function () {
-            params.debug = !params.debug;
+            m.debug = !m.debug;
         });
         $('#myMenu').on('hidden.bs.modal', function () {
             $("#game").css({"margin-right":"auto"});
         });
         $("#menu").click(function () {
             $("#game").css({"margin-right":"0"});
-        });
-        $("#save").click(function () {
-            params.mapType = $("#mapType").val();
-            //game.world.removeAll();
-            game.state.start('Boot');
         });
     }
     init(){

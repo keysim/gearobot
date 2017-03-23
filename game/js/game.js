@@ -4,25 +4,26 @@ var BasicGame = function (game) { };
 
 BasicGame.Boot = function (game) { };
 
+$.ajaxSetup({
+    async: false
+});
+
 Phaser.Plugin.Isometric.CLASSIC = Math.PI * (30) / 180;//0.523599;//Math.atan(0.5);
 var isoGroup, cursorPos;
 var sort = true;
-var blockSize = 74;
 
-var params = {mapType:"biome", debug:false};
+var m = {type:"biome", debug:false, pos:{x:0.5, y:0.05}, posBot1:{x:0, y:0}, posBot2:{x:0, y:0}};
 var menu = new Menu();
 var map = null, input = null, bot2 = null, bot = null;
-var trees = [];
 
 BasicGame.Boot.prototype =
 {
     preload: function () {
-        trees = [];
-        map = new Map();
+        map = new Map(m.type);
 
         bot = new Bot(1);
         bot2 = new Bot(2);
-        map.getPath(bot.cell, bot2.cell);
+        //map.getPath(bot.cell, bot2.cell);
         input = new Input();
 
         sort = true;
@@ -33,12 +34,12 @@ BasicGame.Boot.prototype =
         game.plugins.add(new Phaser.Plugin.Isometric(game));
 
         game.physics.startSystem(Phaser.Plugin.Isometric.ISOARCADE);
-        if(params.mapType == "small")
-            game.iso.anchor.setTo(0.82, 0.1);
+        if(m.type == "arena")
+            game.iso.anchor.setTo(0.8, 0.1);
         else
-            game.iso.anchor.setTo(0.5, 0.05);
+            game.iso.anchor.setTo(m.pos.x, m.pos.y);
 
-        game.load.atlasJSONHash('tileset', 'img/map/tiles.png', 'img/map/tiles.json');
+        game.load.atlasJSONHash('map', 'img/map/tiles.png', 'img/map/tiles.json');
         game.load.atlasJSONHash("bot", 'img/bot/tiles.png', 'img/bot/tiles.json');
         game.load.atlasJSONHash("bot2", 'img/bot/tiles2.png', 'img/bot/tiles2.json');
         game.load.atlasJSONHash("bubble", 'img/bubble/tiles.png', 'img/bubble/tiles.json');
@@ -46,9 +47,7 @@ BasicGame.Boot.prototype =
     },
     create: function () {
         cursorPos = new Phaser.Plugin.Isometric.Point3();
-
         isoGroup = game.add.group();
-
         isoGroup.enableBody = true;
         isoGroup.physicsBodyType = Phaser.Plugin.Isometric.ISOARCADE;
 
