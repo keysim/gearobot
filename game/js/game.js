@@ -43,7 +43,7 @@ BasicGame.Boot.prototype =
         game.load.atlasJSONHash("bot", 'img/bot/tiles.png', 'img/bot/tiles.json');
         game.load.atlasJSONHash("bot2", 'img/bot/tiles2.png', 'img/bot/tiles2.json');
         game.load.atlasJSONHash("bubble", 'img/bubble/tiles.png', 'img/bubble/tiles.json');
-
+        game.load.image('axes', 'img/map/axes.png');
     },
     create: function () {
         cursorPos = new Phaser.Plugin.Isometric.Point3();

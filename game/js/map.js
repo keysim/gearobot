@@ -10,9 +10,17 @@ class Map {
         this.loader = new MapLoader(type);
     }
     init() {
+        this.setAxe();
         this.loader.load();
         this.pfGrid = new PF.Grid(this.loader.getBinary());
         this.it(this.setTile);
+        this.placeBots([bot, bot2]);
+    }
+    setAxe(){
+        var tile = game.add.isoSprite(-this.cell.size, -this.cell.size, 0, 'axes', 0, isoGroup);
+        tile.smoothed = false;
+        tile.body.moves = false;
+        tile.anchor.set(0.5, 0.2);
     }
     setTile(x, y){
         if(map.grid[y][x].tex == null)
@@ -29,10 +37,27 @@ class Map {
             w.alpha = Phaser.Math.clamp(1 + (w.isoZ * 0.03), 0.2, 1);
         });
     }
-    placeBots(bot1, bot2){
-
+    placeBots(bots){
+        for (var i = 0; bots[i]; i++){
+            while (map.getBlock(bots[i].x, bots[i].y) != "empty"){
+                bots[i].x = Math.floor((Math.random() * map.w));
+                bots[i].y = Math.floor((Math.random() * map.h));
+                for (var z = 0; bots[z]; z++){
+                    if(bots[z].cell == bots[i].x + bots[i].y * map.w) // if someone else in this cell, restart placement
+                        bots[i].y = -1;
+                }
+                if(bots[i].y == -1)
+                    console.log("WRONG POS : RESTART PLACEMENT");
+                bots[i].cell = bots[i].x + bots[i].y * map.w;
+            }
+        }
     }
-    getBlock(x, y){
+    getBlock(x, y){ // OR give just the cell on X
+        if(y == undefined){
+            var cell = x;
+            x = cell % map.w;
+            y = Math.floor(cell / map.w);
+        }
         if (x < 0 || x >= this.w || y < 0 || y >= this.h)
             return "out";
         var blockType = this.grid[y][x].tex;
@@ -61,15 +86,15 @@ class Map {
             game.debug.text("FPS = " + game.time.fps || '--', game.world.width - 80, 14, "#a7aebe");
         }
     }
-    createTile(x, y, under){
+    createTile(x, y, under) {
         var tile = game.add.isoSprite(x * map.cell.size, y * map.cell.size, 0, 'map', under ? map.tex[map.grid[y][x].under] : map.grid[y][x].tex, isoGroup);
         tile.smoothed = false;
         tile.body.moves = false;
         tile.anchor.set(0.5, under ? map.texPos[map.grid[y][x].under] : map.texPos[map.grid[y][x].id]);
         return tile;
     }
-    getPath(from, to){ // cell ID
-        this.path = this.finder.findPath(from % this.w, Math.floor(from / this.w), to % this.w, Math.floor(to / this.w), this.pfGrid);
+    getPath(x1, y1, x2, y2){ // cell ID : from % map.w, Math.floor(from / map.w), to % map.w, Math.floor(to / map.w)
+        return map.finder.findPath(x1, y1, x2, y2, map.pfGrid);
     }
     it(callback){
         for (var y = 0; y < this.h; y++)
