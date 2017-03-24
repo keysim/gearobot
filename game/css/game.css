@@ -22,3 +22,19 @@ body {
     position: absolute;
     left: 50px;
 }
+
+.switch label input[type=checkbox]:checked+.lever:after {
+    background-color: #9c27b0;
+}
+
+.switch label input[type=checkbox]:checked+.lever {
+    background-color: #ce93d8;
+}
+[type="radio"]:not(:checked)+label, [type="radio"]:checked+label {
+    padding-left: 30px;
+}
+
+[type="radio"]:checked+label:after, [type="radio"].with-gap:checked+label:after{
+    background-color: #9c27b0;
+    border-color: #9c27b0;
+}

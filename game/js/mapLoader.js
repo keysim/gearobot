@@ -28,7 +28,7 @@ class MapLoader {
                     var nearest = null;
                     var minDist = 99999999;
                     for (var z = 0; z < biome.length; z++) {
-                        var dist = (Math.pow(biome[z].x - x, 2) + Math.pow(biome[z].y - y, 2)) * ((biome[z].type == 5) ? 1.8 : 1);
+                        var dist = (Math.pow(biome[z].x - x, 2) + Math.pow(biome[z].y - y, 2)) * ((biome[z].type == 5) ? 1 : 1);
                         if (dist < minDist) {
                             nearest = biome[z].type;
                             minDist = dist;
@@ -41,7 +41,7 @@ class MapLoader {
         this.grid = grid;
         map.it(this.initCell);
         if(type == "random" || type == "biome") {
-            for (var i = 0; i < 15; i++) { // 10 bush or tree
+            for (var i = 0; i < map.maxPlants; i++) { // 15 bush or tree
                 var x = Math.floor((Math.random() * map.w));
                 var y = Math.floor((Math.random() * map.h));
                 if (grid[y][x] != 5 && grid[y][x] > 2) {
@@ -63,12 +63,12 @@ class MapLoader {
             under:3 // add soil under tree by default
         });
     }
-    getBinary(){
+    getBinary(){ // Now useless
         var binary = [];
-        for (var y = 0; y < map.h; y++) {
+        for (var x = 0; x < map.w; x++) {
             binary.push([]);
-            for (var x = 0; x < map.w; x++)
-                binary[y].push((map.grid[y][x] < 2 || map.grid[y][x] == 5));
+            for (var y = 0; y < map.h; y++)
+                binary[x].push((map.grid[y][x] < 2 || map.grid[y][x] == 5));
         }
         return binary;
     }

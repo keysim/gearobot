@@ -2,6 +2,7 @@ class Map {
     constructor(type) {
         this.grid = [];
         this.cell = {size:74};
+        this.maxPlants = m.plants;
         this.tex = ['tree', 'bush', 'brick', 'soil', 'grass', 'water'];
         this.texPos = [0.699, 0.14, 0.05, 0.05, 0.05, 0.05];
         this.finder = new PF.AStarFinder();
@@ -13,8 +14,20 @@ class Map {
         this.setAxe();
         this.loader.load();
         this.pfGrid = new PF.Grid(this.loader.getBinary());
+        this.it((x, y) => {
+            map.pfGrid.setWalkableAt(x, y, !(map.grid[y][x].id < 2 || map.grid[y][x].id == 5));
+        });
         this.it(this.setTile);
         this.placeBots([bot, bot2]);
+        var path = map.getPath(bot.x, bot.y, bot2.x, bot2.y);
+        map.grid[bot.y][bot.x].tile.tint = 0x000000;
+        map.grid[bot2.y][bot2.x].tile.tint = 0x000000;
+        while (!map.getPath(bot.x, bot.y, bot2.x, bot2.y).length){
+            console.log("PATH_FINDER FAILED - Restart positioning bots.");
+            bot.x = -1;
+            bot2.x = -1;
+            this.placeBots([bot, bot2]);
+        }
     }
     setAxe(){
         var tile = game.add.isoSprite(-this.cell.size, -this.cell.size, 0, 'axes', 0, isoGroup);
@@ -47,7 +60,7 @@ class Map {
                         bots[i].y = -1;
                 }
                 if(bots[i].y == -1)
-                    console.log("WRONG POS : RESTART PLACEMENT");
+                    console.log("BOT ON BOT : Restart positioning.");
                 bots[i].cell = bots[i].x + bots[i].y * map.w;
             }
         }
@@ -94,7 +107,8 @@ class Map {
         return tile;
     }
     getPath(x1, y1, x2, y2){ // cell ID : from % map.w, Math.floor(from / map.w), to % map.w, Math.floor(to / map.w)
-        return map.finder.findPath(x1, y1, x2, y2, map.pfGrid);
+        var grid = map.pfGrid.clone();
+        return map.finder.findPath(x1, y1, x2, y2, grid);
     }
     it(callback){
         for (var y = 0; y < this.h; y++)

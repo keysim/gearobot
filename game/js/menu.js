@@ -1,6 +1,7 @@
 class Menu {
     constructor(){
-        //$('#myMenu').modal('show');
+        if(m.type != "biome" && m.type != "random")
+            $("#biomeParams").hide();
         $(".button-collapse").sideNav();
         $('.button-collapse').sideNav('show');
         $('.dropdown-button').dropdown();
@@ -8,14 +9,22 @@ class Menu {
             $("#typeBtn").html($(this).html());
             $('.dropdown-button').dropdown('close');
             m.type = $(this).data("type");
-            game.state.start('Boot');
+            menu.reload();
+            if(m.type == "biome" || m.type == "random")
+                $("#biomeParams").show();
+            else
+                $("#biomeParams").hide();
         });
         $("#debug").change(function () {
             m.debug = !m.debug;
         });
         $("#generate").click(function () {
-            game.state.start('Boot');
+            menu.reload();
         });
+    }
+    reload(){
+        game.state.start('Boot');
+        m.plants = $('input[name=nbPlants]:checked').val();
     }
     init(){
     }
