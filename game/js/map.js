@@ -47,8 +47,8 @@ class Map {
             isoGroup.forEach(function (tile) {
                 game.debug.body(tile, 'rgba(150, 150, 150, 0.7)', false);
             });
-            game.debug.text("FPS = " + game.time.fps || '--', 2, 14, "#a7aebe");
-            game.debug.text("V : " + 0.1, 2, game.world.height - 2, "#ffff00");
+            game.debug.text("FPS = " + game.time.fps || '--', game.world.width - 80, 14, "#a7aebe");
+            game.debug.text("V : " + 0.1, game.world.width - 80, game.world.height - 2, "#ffff00");
             this.lastDebugState = true;
         }
         else{
@@ -58,7 +58,7 @@ class Map {
                 });
                 this.lastDebugState = false;
             }
-            game.debug.text("FPS = " + game.time.fps || '--', 2, 14, "#a7aebe");
+            game.debug.text("FPS = " + game.time.fps || '--', game.world.width - 80, 14, "#a7aebe");
         }
     }
     createTile(x, y, under){

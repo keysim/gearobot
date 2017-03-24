@@ -13,11 +13,8 @@ class Menu {
         $("#debug").change(function () {
             m.debug = !m.debug;
         });
-        $('#myMenu').on('hidden.bs.modal', function () {
-            $("#game").css({"margin-right":"auto"});
-        });
-        $("#menu").click(function () {
-            $("#game").css({"margin-right":"0"});
+        $("#generate").click(function () {
+            game.state.start('Boot');
         });
     }
     init(){
