@@ -1,4 +1,4 @@
-var game = new Phaser.Game(1300, 860, Phaser.AUTO, 'game', null, true, false);
+var game = new Phaser.Game(1300, 850, Phaser.CANVAS, 'game', null, true, false);
 
 var BasicGame = function (game) { };
 
@@ -15,6 +15,7 @@ var sort = true;
 var m = {type:"biome", debug:false, plants:15, pos:{x:0.5, y:0.05}, posBot1:{x:0, y:0}, posBot2:{x:0, y:0}};
 var menu = new Menu();
 var map = null, input = null, bot2 = null, bot = null;
+var ide = new Ide();
 
 BasicGame.Boot.prototype =
 {
@@ -23,7 +24,6 @@ BasicGame.Boot.prototype =
 
         bot = new Bot(1);
         bot2 = new Bot(2);
-        //map.getPath(bot.cell, bot2.cell);
         input = new Input();
 
         sort = true;

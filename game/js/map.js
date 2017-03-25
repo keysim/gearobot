@@ -8,22 +8,20 @@ class Map {
         this.finder = new PF.AStarFinder();
         this.lastDebugState = false;
         this.water = [];
-        this.loader = new MapLoader(type);
+        this.loader = new Loader(type);
+        this.path = null;
     }
     init() {
         this.setAxe();
         this.loader.load();
-        this.pfGrid = new PF.Grid(this.loader.getBinary());
+        this.pfGrid = new PF.Grid(map.w, map.h);//this.loader.getBinary()
         this.it((x, y) => {
             map.pfGrid.setWalkableAt(x, y, !(map.grid[y][x].id < 2 || map.grid[y][x].id == 5));
         });
         this.it(this.setTile);
-        this.placeBots([bot, bot2]);
-        var path = map.getPath(bot.x, bot.y, bot2.x, bot2.y);
-        map.grid[bot.y][bot.x].tile.tint = 0x000000;
-        map.grid[bot2.y][bot2.x].tile.tint = 0x000000;
-        while (!map.getPath(bot.x, bot.y, bot2.x, bot2.y).length){
-            console.log("PATH_FINDER FAILED - Restart positioning bots.");
+        while (!(this.path = map.getPath(bot.x, bot.y, bot2.x, bot2.y)).length){
+            if(bot.x != -1)
+                console.log("PATH_FINDER FAILED - Restart positioning bots.");
             bot.x = -1;
             bot2.x = -1;
             this.placeBots([bot, bot2]);
@@ -82,21 +80,25 @@ class Map {
     }
     render() {
         if(m.debug) {
-            isoGroup.forEach(function (tile) {
+            for(var i = 0; map.path[i]; i++)
+                map.grid[map.path[i][1]][map.path[i][0]].tile.tint = 0x999999;
+            /*isoGroup.forEach(function (tile) {
                 game.debug.body(tile, 'rgba(150, 150, 150, 0.7)', false);
-            });
-            game.debug.text("FPS = " + game.time.fps || '--', game.world.width - 80, 14, "#a7aebe");
+            });*/
+            game.debug.text("FPS = " + game.time.fps || '--', game.world.width - 80, 15, "#a7aebe");
             game.debug.text("V : " + 0.1, game.world.width - 80, game.world.height - 2, "#ffff00");
             this.lastDebugState = true;
         }
         else{
             if(this.lastDebugState) {
-                isoGroup.forEach(function (tile) {
+                for(var i = 0; map.path[i]; i++)
+                    map.grid[map.path[i][1]][map.path[i][0]].tile.tint = 0xFFFFFF;
+                /*isoGroup.forEach(function (tile) {
                     game.debug.body(tile, 'rgba(150, 150, 150, 0)', false);
-                });
+                });*/
+                game.debug.text("", game.world.width - 80, 14, "#a7aebe");
                 this.lastDebugState = false;
             }
-            game.debug.text("FPS = " + game.time.fps || '--', game.world.width - 80, 14, "#a7aebe");
         }
     }
     createTile(x, y, under) {
@@ -107,6 +109,8 @@ class Map {
         return tile;
     }
     getPath(x1, y1, x2, y2){ // cell ID : from % map.w, Math.floor(from / map.w), to % map.w, Math.floor(to / map.w)
+        if(x1 == -1 || x2 == -1 || y1 == -1 || y2 == -1)
+            return [];
         var grid = map.pfGrid.clone();
         return map.finder.findPath(x1, y1, x2, y2, grid);
     }

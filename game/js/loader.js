@@ -1,4 +1,4 @@
-class MapLoader {
+class Loader {
     constructor(type) {
         this.files = ["arena", "test"];
         this.type = type;
@@ -19,7 +19,7 @@ class MapLoader {
         else if(type == "random" || type == "biome"){
             map.w = 10;
             map.h = 10;
-            map.it(function (x, y) {
+            map.it((x, y) => {
                 if(grid[y] == undefined)
                     grid.push([]);
                 if(type == "random")
@@ -28,7 +28,7 @@ class MapLoader {
                     var nearest = null;
                     var minDist = 99999999;
                     for (var z = 0; z < biome.length; z++) {
-                        var dist = (Math.pow(biome[z].x - x, 2) + Math.pow(biome[z].y - y, 2)) * ((biome[z].type == 5) ? 1 : 1);
+                        var dist = (Math.pow(biome[z].x - x, 2) + Math.pow(biome[z].y - y, 2)) * ((biome[z].type == 5) ? 1.9 : 1);
                         if (dist < minDist) {
                             nearest = biome[z].type;
                             minDist = dist;
@@ -65,10 +65,10 @@ class MapLoader {
     }
     getBinary(){ // Now useless
         var binary = [];
-        for (var x = 0; x < map.w; x++) {
+        for (var y = 0; y < map.h; y++) {
             binary.push([]);
-            for (var y = 0; y < map.h; y++)
-                binary[x].push((map.grid[y][x] < 2 || map.grid[y][x] == 5));
+            for (var x = 0; x < map.w; x++)
+                binary[y].push((map.grid[y][x].id < 2 || map.grid[y][x].id == 5));
         }
         return binary;
     }
@@ -79,8 +79,12 @@ class MapLoader {
             grid = file.responseJSON.map;
             map.h = grid.length;
             map.w = grid[0].length;
-            if(file.responseJSON.pos)
-                m.pos = file.responseJSON.pos;
+            if(file.responseJSON.bots){
+                bot.x = file.responseJSON.bots[0].x;
+                bot.y = file.responseJSON.bots[0].y;
+                bot2.x = file.responseJSON.bots[1].x;
+                bot2.y = file.responseJSON.bots[1].y;
+            }
         }
         return grid;
     }

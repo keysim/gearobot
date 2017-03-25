@@ -5,7 +5,7 @@ class Bubble {
         this.sprite = null;
     }
     init () {
-        this.sprite = game.add.isoSprite(map.cell.w * this.bot.x+5, map.cell.h * this.bot.y+10, 50, "bubble", "empty", isoGroup);
+        this.sprite = game.add.isoSprite(map.cell.size * this.bot.x+5, map.cell.size * this.bot.y+10, 50, "bubble", "empty", isoGroup);
         this.sprite.anchor.set(0, 1);
         this.sprite.player = this.player;
         //this.sprite.tint = 0xED5565;
@@ -20,8 +20,8 @@ class Bubble {
     }
     set(type){
         //game.iso.topologicalSort(isoGroup);
-        this.sprite.isoX = this.bot.x * map.cell.w+5;
-        this.sprite.isoY = this.bot.y * map.cell.h+10;
+        this.sprite.isoX = this.bot.x * map.cell.size+5;
+        this.sprite.isoY = this.bot.y * map.cell.size+10;
         this.sprite.frame = this.types.indexOf(type);
         var tween = game.add.tween(this.sprite).to({ alpha: 1 }, 500, Phaser.Easing.Quadratic.InOut, true);
         tween.onComplete.add(function () {

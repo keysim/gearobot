@@ -17,8 +17,8 @@ body {
     width: 1300px;
 }
 
-#menu {
-    top: 50px;
+#gameOptions {
+    top: 200px;
     position: absolute;
     left: 50px;
 }
@@ -37,4 +37,53 @@ body {
 [type="radio"]:checked+label:after, [type="radio"].with-gap:checked+label:after{
     background-color: #9c27b0;
     border-color: #9c27b0;
+}
+
+nav {
+    font-family: cursive;
+}
+
+nav ul li.active {
+    background-color: rgba(0,0,0,0.3);
+}
+
+#ide {
+    height: 850px;
+}
+
+#screen {
+    height: 271px;
+    background-size: cover;
+    background-position: center center;
+}
+
+#toward {
+}
+
+.chip {
+    /*display: block;*/
+    cursor: move;
+}
+
+#main {
+    min-height: 200px;
+}
+
+.fatPol {
+    font-family: fantasy;
+}
+
+.chip span {
+    margin: 0 -14px 0 12px;
+    padding: inherit;
+    height: 32px;
+    width: 32px;
+    border-radius: 50%;
+    float: right;
+    background-color: #0D47A1;
+}
+
+.droppable-hover {
+    color: red;
+    transition: all .2s ease-in-out;
 }

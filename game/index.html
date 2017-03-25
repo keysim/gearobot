@@ -6,6 +6,7 @@
         <link rel="icon" href="img/icon.png" />
         <link href="css/material-icons.css" rel="stylesheet">
         <link href="/node_modules/materialize-css/dist/css/materialize.min.css" rel="stylesheet" media="screen,projection"/>
+        <link href="css/jquery-ui.min.css" rel="stylesheet">
         <link href="css/game.css" rel="stylesheet">
     </head>
     <body>
@@ -35,16 +36,16 @@
                         Plants :
                     </div>
                     <div class="col s2">
-                        <input name="nbPlants" type="radio" id="test1" value='0' />
-                        <label for="test1">0</label>
+                        <input name="nbPlants" type="radio" id="noPlants" value='0' />
+                        <label for="noPlants">0</label>
                     </div>
                     <div class="col s2">
-                        <input name="nbPlants" type="radio" id="test2" value='15' checked />
-                        <label for="test2">15</label>
+                        <input name="nbPlants" type="radio" id="somePlants" value='15' checked />
+                        <label for="somePlants">+</label>
                     </div>
                     <div class="col s3">
-                        <input name="nbPlants" type="radio" id="test3" value='30' />
-                        <label for="test3">30</label>
+                        <input name="nbPlants" type="radio" id="lotOfPlants" value='30' />
+                        <label for="lotOfPlants">++</label>
                     </div>
                 </div>
             </li>
@@ -77,45 +78,71 @@
                 </div>
             </li>
         </ul>
-        <div id="menu">
-            <a href="#" data-activates="slide-out" class="button-collapse waves-effect waves-light btn-large purple">Menu</a>
-        </div>
-        <!--<div id="menu">
-            <button id="btnMenu" class="btn btn-primary btn-lg pull-right" data-toggle="modal" data-target="#myMenu">Menu</button>
-            <div class="modal fade" id="myMenu" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="myModalLabel">Game menu</h4>
+        <nav class="purple">
+            <div class="nav-wrapper">
+                <a href="#!" class="brand-logo center">GeaRobot</a>
+                <ul class="left hide-on-med-and-down">
+                    <li><a href="#" data-activates="slide-out" class="button-collapse waves-effect" style="display: block">Menu</a></li>
+                    <li id="game_nav" class="active waves-effect"><a href="#">Game</a></li>
+                    <li id="ide_nav" class="waves-effect"><a href="#">IDE</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div id="GameView" class="row s12 tab">
+            <div id="game"></div></div>
+        <div id="IDEView" class="row s8 tab">
+            <div id="ide" class="col s10 offset-s1 z-depth-5 deep-purple lighten-4">
+                <div class="row s12">
+                    <div id="screen" class="col s4 card-panel grey darken-4 z-depth-5">
+                    </div>
+                    <div class="col s8">
+                        <div class="row center">
+                            <h3 class="fatPol">AI - Functions</h3>
                         </div>
-                        <div class="modal-body">
-                            <div class="form-group">
-                                <label for="mapType">Map</label>
-                                <select id="mapType" class="form-control">
-                                    <option value="biome">Biome</option>
-                                    <option value="random">Random</option>
-                                    <option value="arena">Small arena</option>
-                                </select>
+                        <div id="sandbox" class="row">
+                            <div class="col s6">
+                                <div id="toward">
+                                    <div class="chip purple white-text">
+                                        <img src="img/icon.png" alt="Toward">
+                                        moveTowardEnemy()
+                                        <span class="blue">1</span>
+                                    </div>
+                                </div>
+                                <div id="stab">
+                                    <div class="chip purple white-text">
+                                        <img src="img/icon.png" alt="Toward">
+                                        stab()
+                                        <span class="pink">1</span>
+                                    </div>
+                                </div>
                             </div>
-                            <div id="debug" class="checkbox"><label><input type="checkbox"> Debug mode</label></div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Start Game</button>
-                            <button id="save" type="button" class="btn btn-primary">Generate</button>
                         </div>
                     </div>
                 </div>
+                <div class="row"><div class="divider purple"></div></div>
+                <div class="row">
+                    <div id="trash" class="col s3"><i class="material-icons large">delete</i></div>
+                    <div class="col s6">
+                        <div id="main" class="card-panel white"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s2 offset-s10">
+                        <a id="start" class="waves-effect waves-light btn-large purple"><i class="material-icons right">send</i>Ready</a>
+                    </div>
+                </div>
             </div>
-        </div>-->
-        <div id="game"></div>
+        </div>
+
         <script src="lib/phaser.min.js"></script>
         <script src="lib/pathfinding-browser.min.js"></script>
         <script src="lib/jquery.min.js"></script>
+        <script src="lib/jquery-ui.min.js"></script>
         <script src="/node_modules/materialize-css/dist/js/materialize.min.js"></script>
         <script src="js/menu.js"></script>
         <script src="/node_modules/phaser-plugin-isometric/dist/phaser-plugin-isometric.js"></script>
-        <script src="js/mapLoader.js"></script>
+        <script src="js/ide.js"></script>
+        <script src="js/loader.js"></script>
         <script src="js/map.js"></script>
         <script src="js/bubble.js"></script>
         <script src="js/bot.js"></script>
