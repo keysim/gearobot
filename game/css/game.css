@@ -48,7 +48,7 @@ nav ul li.active {
 }
 
 #ide {
-    height: 850px;
+    min-height: 850px;
 }
 
 #screen {
@@ -61,8 +61,9 @@ nav ul li.active {
 }
 
 .chip {
-    /*display: block;*/
+    display: inline-flex;
     cursor: move;
+    margin-left: 5px;
 }
 
 #main {
@@ -73,7 +74,7 @@ nav ul li.active {
     font-family: fantasy;
 }
 
-.chip span {
+.chip .point {
     margin: 0 -14px 0 12px;
     padding: inherit;
     height: 32px;
@@ -86,4 +87,159 @@ nav ul li.active {
 .droppable-hover {
     color: red;
     transition: all .2s ease-in-out;
+}
+
+.divider {
+    margin-bottom: 10px;
+}
+
+.codainer {
+    /*min-width: 100px;*/
+    min-height: 50px;
+    margin-bottom: 5px;
+    padding: 10px;
+    border: 2px solid #2962FF;
+    background-color: #90caf9;
+    display: block;
+    width: 100%;
+    cursor: move;
+}
+
+.sortable {
+    overflow: visible;
+}
+
+.sortable-placeholder {
+    min-height: 30px;
+    border: 3px dashed red;
+    border-radius: 5px;
+}
+
+.condition {
+    border: 2px solid #2962FF;
+    border-bottom: 0;
+    text-align: center;
+    background-color: #5099f9;
+    padding: 3px 3px;
+    color: white;
+    font-weight: 900;
+    width: 92%;
+    display: inline-block;
+    height: 44px;
+    vertical-align: top;
+    overflow: hidden;
+}
+
+.statement {
+    min-height: 30px;
+    min-width: 100px;
+    cursor: move;
+}
+
+.cond-value {
+    display: inline-block;
+    width: 45%;
+    height: 30px;
+    vertical-align: middle;
+}
+
+.cond-sign {
+    display: inline-block;
+    width: 10%;
+}
+
+.state-name {
+    width: 8%;
+    display: inline-block;
+    text-align: center;
+    padding: 11px 0 11px 4px;
+    font-weight: 900;
+    color: white;
+    background-color: #2962FF;
+
+}
+
+.sign {
+}
+
+.ui-selectmenu-icon {
+    display: none;
+    width: 0;
+}
+.ui-selectmenu-button.ui-button {
+    text-align: center;
+    width: 100%;
+    overflow: visible;
+    padding: .4em 0;
+    background-color: #2962FF;
+    color: ghostwhite;
+}
+.ui-selectmenu-text {
+    margin: 0;
+    overflow: visible;
+    font-weight: 800;
+}
+.ui-menu-item {
+    text-align: center;
+}
+.ui-menu .ui-menu-item-wrapper {
+    padding: 3px 1em 3px 1em;
+}
+.var-list {
+    border-radius: 15px;
+    border: 1px solid #9c27b0;
+    margin: 5px;
+    padding: 5px 0 0 0;
+}
+.variable_menu {
+    display: inline-block;
+}
+
+.var-title {
+    font-family: fantasy;
+    border-bottom: 1px solid #9c27b0;
+    border-right: 1px solid #9c27b0;
+    border-radius: 10px;
+    margin-bottom: 5px;
+    text-align: center;
+    display: inline-block;
+    width: 65px;
+    font-size: large;
+}
+.val {
+    height: 0;
+}
+.value {
+    height: 30px !important;
+    text-align: center;
+    width: 50%;
+    margin: 0 2em 0 2em !important;
+}
+.titleCode {
+    text-align: center;
+    font-family: fantasy;
+    padding: 0 !important;
+}
+.titleCode>h3 {
+    margin: -27px 0 0 0;
+}
+
+.expression {
+    display: grid;
+}
+
+.btn-block {
+    display: block !important;
+}
+
+#sidenav-overlay {
+    opacity: 0 !important;
+}
+
+.divider {
+    margin-bottom: 15px !important;
+}
+
+.time {
+    margin-right: 50px;
 }

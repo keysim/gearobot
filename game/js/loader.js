@@ -63,15 +63,15 @@ class Loader {
             under:3 // add soil under tree by default
         });
     }
-    getBinary(){ // Now useless
-        var binary = [];
-        for (var y = 0; y < map.h; y++) {
-            binary.push([]);
-            for (var x = 0; x < map.w; x++)
-                binary[y].push((map.grid[y][x].id < 2 || map.grid[y][x].id == 5));
-        }
-        return binary;
-    }
+    // getBinary(){ // Now useless
+    //     var binary = [];
+    //     for (var y = 0; y < map.h; y++) {
+    //         binary.push([]);
+    //         for (var x = 0; x < map.w; x++)
+    //             binary[y].push((map.grid[y][x].id < 2 || map.grid[y][x].id == 5));
+    //     }
+    //     return binary;
+    // }
     getJson(fileName){
         var grid = null;
         var file = $.getJSON("maps/"+fileName+".json");

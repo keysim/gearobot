@@ -49,10 +49,9 @@
                     </div>
                 </div>
             </li>
-            <li><div class="divider"></div></li>
-            <br>
+            <li><div class="divider debug"></div></li>
             <li>
-                <div class="row">
+                <div class="row debug">
                     <div class="col s3 offset-s2">
                         Debug :
                     </div>
@@ -69,11 +68,13 @@
                 </div>
             </li>
             <li><div class="divider"></div></li>
-            <br>
             <li>
                 <div class="row">
-                    <div class="col s8 offset-s3">
-                        <a id="generate" class="waves-effect waves-light btn-large purple"><i class="material-icons right">play_arrow</i>Generate</a>
+                    <div class="col s2">
+                        <a id="generate" class="waves-effect waves-light btn-large purple"><i class="material-icons">cached</i></a>
+                    </div>
+                    <div class="col offset-s2 s8">
+                        <a id="play" class="waves-effect waves-light btn-large purple btn-block"><i class="material-icons right">play_arrow</i>PLAY</a>
                     </div>
                 </div>
             </li>
@@ -84,7 +85,10 @@
                 <ul class="left hide-on-med-and-down">
                     <li><a href="#" data-activates="slide-out" class="button-collapse waves-effect" style="display: block">Menu</a></li>
                     <li id="game_nav" class="active waves-effect"><a href="#">Game</a></li>
-                    <li id="ide_nav" class="waves-effect"><a href="#">IDE</a></li>
+                    <li id="ide_nav" class="waves-effect disabled"><a href="#">IDE</a></li>
+                </ul>
+                <ul class="right hide-on-med-and-down">
+                    <li class="time">30</li>
                 </ul>
             </div>
         </nav>
@@ -96,39 +100,38 @@
                     <div id="screen" class="col s4 card-panel grey darken-4 z-depth-5">
                     </div>
                     <div class="col s8">
-                        <div class="row center">
-                            <h3 class="fatPol">AI - Functions</h3>
-                        </div>
-                        <div id="sandbox" class="row">
-                            <div class="col s6">
-                                <div id="toward">
-                                    <div class="chip purple white-text">
-                                        <img src="img/icon.png" alt="Toward">
-                                        moveTowardEnemy()
-                                        <span class="blue">1</span>
-                                    </div>
-                                </div>
-                                <div id="stab">
-                                    <div class="chip purple white-text">
-                                        <img src="img/icon.png" alt="Toward">
-                                        stab()
-                                        <span class="pink">1</span>
-                                    </div>
-                                </div>
+                        <div class="row">
+                            <div class="col s3">
+                                <h5 class="center fatPol">Actions</h5>
+                                <div class="divider purple"></div>
+                                <div id="actions"></div>
+                            </div>
+                            <div class="col s7">
+                                <h5 class="center fatPol">Variables</h5>
+                                <div class="divider purple"></div>
+                                <div id="variables"></div>
+                            </div>
+                            <div class="col s2">
+                                <h5 class="center fatPol">Statements</h5>
+                                <div class="divider purple"></div>
+                                <div id="statements"></div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="row"><div class="divider purple"></div></div>
+                <div class="row"><div class="col s4 divider purple"></div><div class="col s4 titleCode"><h3>{ My Gearobot Code ! }</h3></div><div class="col s4 divider purple"></div></div>
                 <div class="row">
-                    <div id="trash" class="col s3"><i class="material-icons large">delete</i></div>
-                    <div class="col s6">
-                        <div id="main" class="card-panel white"></div>
+                    <div id="trash" class="col s2"><i class="material-icons large">delete</i></div>
+                    <div class="col s8">
+                        <div id="main" class="card-panel sortable"></div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col s2 offset-s10">
-                        <a id="start" class="waves-effect waves-light btn-large purple"><i class="material-icons right">send</i>Ready</a>
+                    <div class="col s2 offset-s2">
+                        <a id="test" class="waves-effect waves-light btn-large purple btn-block"><i class="material-icons left">memory</i>Test</a>
+                    </div>
+                    <div class="col s2 offset-s4">
+                        <a id="start" class="waves-effect waves-light btn-large purple btn-block"><i class="material-icons right">send</i>Ready</a>
                     </div>
                 </div>
             </div>
@@ -138,6 +141,8 @@
         <script src="lib/pathfinding-browser.min.js"></script>
         <script src="lib/jquery.min.js"></script>
         <script src="lib/jquery-ui.min.js"></script>
+        <script src="lib/jexl.min.js"></script>
+        <script src="js/templates.js"></script>
         <script src="/node_modules/materialize-css/dist/js/materialize.min.js"></script>
         <script src="js/menu.js"></script>
         <script src="/node_modules/phaser-plugin-isometric/dist/phaser-plugin-isometric.js"></script>

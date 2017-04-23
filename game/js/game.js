@@ -12,10 +12,15 @@ Phaser.Plugin.Isometric.CLASSIC = Math.PI * (30) / 180;//0.523599;//Math.atan(0.
 var isoGroup, cursorPos;
 var sort = true;
 
-var m = {type:"biome", debug:false, plants:15, pos:{x:0.5, y:0.05}, posBot1:{x:0, y:0}, posBot2:{x:0, y:0}};
+var jexl = require('Jexl');
+var m = {tick:0, type:"biome", debug:false, plants:15, pos:{x:0.5, y:0.05}, posBot1:{x:0, y:0}, posBot2:{x:0, y:0}};
+var g = {started:false, turn:"player1", time:0, player1:null, player2:null};
 var menu = new Menu();
 var map = null, input = null, bot2 = null, bot = null;
 var ide = new Ide();
+setInterval(function () {
+    m.tick++;
+}, 800);
 
 BasicGame.Boot.prototype =
 {

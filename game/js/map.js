@@ -63,7 +63,7 @@ class Map {
             }
         }
     }
-    getBlock(x, y){ // OR give just the cell on X
+    getBlock(x, y, coll){ // OR give just the cell on X
         if(y == undefined){
             var cell = x;
             x = cell % map.w;
@@ -76,6 +76,8 @@ class Map {
             return "block";
         else if(blockType == "water")
             return "water";
+        else if(((bot.x == x && bot.y == y) || (bot2.x == x && bot2.y == y)) && coll)
+            return "bot";
         return "empty";
     }
     render() {
