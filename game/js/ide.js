@@ -81,12 +81,10 @@ class Ide {
         $("#start").click(function () {
             var node = $("#main");
             var json = readNode(node);
-            console.log(json);
+            console.log(g.turn, json);
+            if(json == "error")
+                json = [];
             g[g.turn] = json;
-            // var context = {"map": 50};
-            // jexl.eval('map * (3 - 1)', context, function(err, res) {
-            //     console.log(res);
-            // });
         });
         $("#test").click(function () {
             console.log("Prout");
@@ -150,7 +148,7 @@ function readNode(node) {
                 var sign = n.find("span .ui-selectmenu-text:first").text();
                 var values = n.find(".value");
                 if(values.length < 2)
-                    return "error";
+                    return "error"; // Not 2 value in condition
                 cond = $(values[0]).val() + sign + $(values[1]).val();
             }
             else
@@ -162,7 +160,7 @@ function readNode(node) {
                 type: type,
                 name: "if",
                 cond: cond,
-                node: childNode
+                code: childNode
             });
         }
         else if(getType(node.className) == "action") {

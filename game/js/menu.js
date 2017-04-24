@@ -1,6 +1,6 @@
 class Menu {
     constructor(){
-        $(".debug").hide();
+        //$(".debug").hide();
         Menu.init();
         setInterval(Menu.timer, 1000);
     }
@@ -9,7 +9,7 @@ class Menu {
         m.plants = $('input[name=nbPlants]:checked').val();
     }
     static init(){
-        $(".time").hide();
+        $(".time").text(m.time).hide();
         if(m.type != "biome" && m.type != "random")
             $("#biomeParams").hide();
         $(".button-collapse").sideNav();
@@ -32,8 +32,8 @@ class Menu {
         $("#play").click(function () {
             Menu.openIDE();
             setTimeout(function () {
-                if (confirm("Are you ready ? Player 1 turn (30s)")) {
-                    g.time = 30;
+                if (confirm("Are you ready ? Player 1 turn (" + m.time + "s)")) {
+                    g.time = m.time;
                     g.started = false;
                     g.turn = "player1";
                     console.log("let's PLAYYYYYY");
@@ -83,8 +83,8 @@ class Menu {
                 }
                 else {
                     setTimeout(function () {
-                        if (confirm("Are you ready ? Player 2 turn (30s)")) {
-                            g.time = 30;
+                        if (confirm("Are you ready ? Player 2 turn (" + m.time + "s)")) {
+                            g.time = m.time;
                             g.turn = "player2";
                             console.log("let's PLAYYYYYY");
                         }
