@@ -11,7 +11,16 @@ GeaRobot's ambition is to place programming in the middle of a funny, entertaini
 
 ## Description
 The main idea of the game is to create with a high level programming language an artificial intelligence of a little Gear Bot. 
-At the beginning of the match, the two players will have to write their code using a list of functionality displayed ...
+At the beginning of the match, the players need to set the map type and his vegetation and the coding time.
+You can see the shortest path between both players in the map with the slide << See path >>, if both player like the map, you can start the game by clicking the << play >> button.
+When the game start, players are redirected to the IDE(integrated development environment) so they will program their AI. The player will code with a simple drag and drop all the conditions, variables, statements he want for his AI. 
+Here a simple example of code you can make with the IDE :
+```javascript
+if (enemy.distance >  3) {
+    self.moveToward();
+}
+```
+After the two player set their code (in the limited time defined) the site will switch to game section and both programs will be launch and the bot will "fight". After a defined number of turn, the game will switch back to the editor and the player will have to upgrade their AI and so on until one bot kill the other one.
 
 ## Bots
 The bot is the character that will be executing actions of the player's script.
