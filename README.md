@@ -66,12 +66,28 @@ Made with :
 * [Materializecss](http://materializecss.com) - Responsive UI framework based on Material Design
 * [Jquery](https://jquery.com) - JavaScript library for DOM manipulations
 * [JqueryUI](https://jqueryui.com/) - Jquery plugin used for drag and drop functionality
-
+* [NodeJS](https://nodejs.org) - NodeJS for the server
 
 The extra component we used :
 * [pathFinding](https://qiao.github.io/PathFinding.js/visual) - Javascript path finding
 * [Jexl eval](https://github.com/TechnologyAdvice/Jexl) - Javascript expression evaluation
 
+
+# What's missing that we want to implement next
+
+- Automatic generated random object on the map so the player can use them to kill the other
+- Adding more Bubbles so the player can see what's happening
+- Adding a arrow above the player who is playing
+- Adding tutorial so the player will understand quickly how to do a good AI
+- Adding more actions, variables, statements so game will be more interesting
+- Adding a new page in the navbar for sharing maps so the players can load others players maps
+- Hosting the game online and give the link to all the Beta tester who wanted to test our game
+- Setting up a multi player mode so the players don't have to play on the same computer
+- Adding a little real time chat so the player can discuss and insult each other during the fight
+- If the game is taking to long, the farthest blocks will fall each game turn
+- Adding some random things (damages, map movements, etc...) so the game will not be linear
+- Adding more powerful animations so the game would be more interesting to watch
+- And so on...
 
 ## Authors & Contributors
 [![Keysim](https://raw.githubusercontent.com/keysim/gearobot/master/doc/img/keysim.png)](http://keysim.fr) | [![Vireth](https://raw.githubusercontent.com/keysim/gearobot/master/doc/img/vireth.png)](http://vireth.com) | [![Tang](https://raw.githubusercontent.com/keysim/gearobot/master/doc/img/tang.png)](http://keysim.fr)
