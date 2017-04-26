@@ -17,6 +17,14 @@
                 </div>
             </li>
             <li>
+                <div class="col s12 center">
+                    <h4 class="fatPol">GAME MENU</h4>
+                </div>
+                <div class="col s12 center">
+                    <p class="italic">Select your map settings</p>
+                </div>
+            </li>
+            <li>
                 <div class="row">
                     <div class="col s10 offset-s1">
                         <a id="typeBtn" class='dropdown-button btn btn-block purple lighten-1' data-beloworigin="true" href='#' data-activates='dropdown1'><i class="material-icons left">filter_hdr</i>Biome</a>
@@ -32,12 +40,12 @@
             </li>
             <li id="biomeParams">
                 <div class="row">
-                    <div class="col s3 offset-s1">
-                        Plants :
+                    <div class="col s4">
+                        Vegetation
                     </div>
                     <div class="col s2">
                         <input name="nbPlants" type="radio" id="noPlants" value='0' />
-                        <label for="noPlants">0</label>
+                        <label for="noPlants">ø</label>
                     </div>
                     <div class="col s2">
                         <input name="nbPlants" type="radio" id="somePlants" value='15' checked />
@@ -49,11 +57,31 @@
                     </div>
                 </div>
             </li>
+            <li><div class="divider"></div></li>
+            <li>
+                <div class="row">
+                    <div class="col s2">
+                        Time
+                    </div>
+                    <div class="col s3">
+                        <input name="nbTime" type="radio" id="t_short" value='30' />
+                        <label for="t_short">30s</label>
+                    </div>
+                    <div class="col s3">
+                        <input name="nbTime" type="radio" id="t_normal" value='60' checked />
+                        <label for="t_normal">60s</label>
+                    </div>
+                    <div class="col s2">
+                        <input name="nbTime" type="radio" id="t_long" value='120' />
+                        <label for="t_long">120s</label>
+                    </div>
+                </div>
+            </li>
             <li><div class="divider debug"></div></li>
             <li>
                 <div class="row debug">
-                    <div class="col s3 offset-s2">
-                        Debug :
+                    <div class="col s4 offset-s1">
+                        See path
                     </div>
                     <div class="col s6">
                         <div class="switch" id="debug">
@@ -74,7 +102,15 @@
                         <a id="generate" class="waves-effect waves-light btn-large purple"><i class="material-icons">cached</i></a>
                     </div>
                     <div class="col offset-s2 s8">
-                        <a id="play" class="waves-effect waves-light btn-large purple btn-block"><i class="material-icons right">play_arrow</i>PLAY</a>
+                        <a id="play" class="waves-effect waves-light btn-large purple btn-block"><i class="material-icons right">play_arrow</i><span id="playText">PLAY</span></a>
+                    </div>
+                </div>
+            </li>
+            <li><div class="divider"></div></li>
+            <li>
+                <div class="row">
+                    <div class="col offset-s3 s6">
+                        <a id="quit" class="waves-effect waves-light btn purple btn-block">QUIT</a>
                     </div>
                 </div>
             </li>
@@ -128,12 +164,21 @@
                 </div>
                 <div class="row">
                     <div class="col s2 offset-s2">
-                        <a id="test" class="waves-effect waves-light btn-large purple btn-block"><i class="material-icons left">memory</i>Test</a>
+                        <a id="save" class="waves-effect waves-light btn-large purple btn-block"><i class="material-icons left">memory</i>Save</a>
                     </div>
                     <div class="col s2 offset-s4">
                         <a id="start" class="waves-effect waves-light btn-large purple btn-block"><i class="material-icons right">send</i>Ready</a>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <!-- Modal Structure -->
+        <div id="turnModal" class="modal bottom-sheet">
+            <div class="modal-content center">
+                <h4 class="player">Player 1</h4>
+                <h5>It's time for you to code !</h5>
+                <p class="time">30 seconds</p>
             </div>
         </div>
 

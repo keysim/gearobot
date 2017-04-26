@@ -81,13 +81,26 @@ class Ide {
         $("#start").click(function () {
             var node = $("#main");
             var json = readNode(node);
-            console.log(g.turn, json);
-            if(json == "error")
+            if(json == "error") {
                 json = [];
+                console.log("Error in the code...");
+            }
+            else{
+                g.time = 1;
+                console.log("Code saved ! Ready.");
+            }
             g[g.turn] = json;
         });
-        $("#test").click(function () {
-            console.log("Prout");
+        $("#save").click(function () {
+            var node = $("#main");
+            var json = readNode(node);
+            if(json == "error") {
+                json = [];
+                console.log("Error in the code...");
+            }
+            else
+                console.log("Code saved !");
+            g[g.turn] = json;
         });
     }
     renderMenu(){
@@ -103,8 +116,11 @@ class Ide {
             main.append('<div class="var-title">' + name + '</div>');
             name = name[0] + "_";
         }
-        for(var i = 0; data[i]; i++)
+        for(var i = 0; data[i]; i++) {
+            if(name)
+                context[name + data[i]] = 0;
             main.append(Tmpl.variable_menu(name + data[i]));
+        }
         return main;
     }
     loadJson(){

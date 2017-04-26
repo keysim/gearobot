@@ -13,10 +13,11 @@ Phaser.Plugin.Isometric.CLASSIC = Math.PI * (30) / 180;//0.523599;//Math.atan(0.
 var isoGroup, cursorPos;
 var sort = true;
 
-var m = {tick:0, type:"biome", debug:false, plants:15, pos:{x:0.5, y:0.05}, posBot1:{x:0, y:0}, posBot2:{x:0, y:0}, time:10};
-var g = {started:false, turn:"player1", time:0, player1:[], player2:[]};
+var m = {tick:0, type:"biome", debug:false, plants:15, pos:{x:0.5, y:0.05}, posBot1:{x:0, y:0}, posBot2:{x:0, y:0}, time:60};
+var g = {started:false, codeTime:false, turn:"player1", time:0, player1:[], player2:[]};
 var menu = new Menu();
 var map = null, input = null, bot2 = null, bot = null;
+var context = {}; // load in ide.js (SET BEFORE IDE)
 var ide = new Ide();
 setInterval(function () {
     m.tick++;
@@ -75,23 +76,11 @@ BasicGame.Boot.prototype =
         map.render();
     }
 };
-
 game.state.add('Boot', BasicGame.Boot);
 game.state.start('Boot');
+
 context = {};
-function testFor() {
-    var tab = ["hey", "lol", "ok"];
-    for(var i = 0; tab[i]; i++){
-        jexl.eval("0 == 0", context).then(function(res) {
-            console.log(res);
-            return "ok";
-        }).then(function (res) {
-            console.log(res);
-        });
-        console.log(i);
-    }
-}
-var code = [
+var code1 = [
     {
         type:"statement",
         cond: "1 < 2",
@@ -103,16 +92,33 @@ var code = [
                     {
                         type:"statement",
                         cond: "1 < 2",
-                        code:[
-                            {
-                                type: "action",
-                                name: "PENIS"
-                            }]
+                        code:[]
+                    },
+                    {
+                        type:"statement",
+                        cond: "1 < 2",
+                        code:[{
+                            type: "action",
+                            name: "NUKE"
+                        }]
                     },
                     {
                         type: "action",
                         name: "move"
-                    }]
+                    },
+                    {
+                        type: "action",
+                        name: "move 2"
+                    },
+                    {
+                        type:"statement",
+                        cond: "1 > 2",
+                        code:[{
+                            type: "action",
+                            name: "NUKE 2"
+                        }]
+                    }
+                ]
             },
             {
                 type: "action",
@@ -136,37 +142,122 @@ var code = [
     }
 ];
 
-var profondeur = [0];
-cb(42);
-
-function cb(res) {
-    var scope = code;
-    if(!res) {// || !scope[profondeur[profondeur.length - 1] + 1]
-        if(profondeur.length > 0) {
-            //console.log("Statement false => GOING BACK");
-            profondeur.pop();
-        }
-        profondeur[profondeur.length - 1]++;
-    }
-    // else
-    //     console.log("Statement true => KEEP GOING");
-    var pos = profondeur[profondeur.length - 1];
-    for(var i = 0; profondeur[i + 1] != undefined; i++) {
-        if(scope[profondeur[i]].type == "statement") {
-            scope = scope[profondeur[i]].code;
-        }
-    }
-    //console.log("pos : ", pos, ", scope : ", scope);
-    if(scope[pos].type == "action") {
-        //console.log("FOUND ACTION : ", scope[pos].name);
-        return "FOUND";
-    }
-    if(scope[pos].type == "statement") {
-        //console.log("GOING DEEPER on statement : ", scope[pos].cond);
-        profondeur.push(0);
-        jexl.eval(scope[pos].cond, context).then(cb);
-    }
+var code2 = [{
+        type:"action",
+        name: "stab"
+    },{
+    type:"action",
+    name: "azeaze"
+},{
+    type:"action",
+    name: "eeeee"
 }
+];
 
-//testIt();
-//testFor();
+var code3 = [{
+    type:"statement",
+    cond: "1 > 2",
+    code: [
+        {
+            type: "action",
+            name: "move_back"
+        }
+    ]
+},{
+    type:"action",
+    name: "eeeee"
+}];
+
+var code4 = [{
+    type:"statement",
+    cond: "1 > 2",
+    code: [
+        {
+            type: "action",
+            name: "move_back"
+        }
+    ]
+},{
+    type:"action",
+    name: "eeeee"
+}];
+
+// var code = code2;
+// var actions = [];
+// var deepness = [];
+// console.log("STARTING...");
+// cb(true);
+//
+// function getNext(res, code, deepness) { // Res is : true or false
+//     var scope = code;
+//     for (var i = 0; deepness[i + 1] != undefined; i++)
+//         if(scope[deepness[i]].type == "statement")
+//             scope = scope[deepness[i]].code;
+//     console.log(scope);
+//     if(deepness.length == 0) { // first time only
+//         deepness.push(0);
+//         return scope[0];
+//     }
+//     if(res && scope[deepness[deepness.length - 1]].code.length > 0){
+//         deepness.push(0);
+//         return scope[deepness[deepness.length - 2]].code[0];
+//     }
+//     else
+//         console.log("FROM", deepness, "PASSING TO THE NEXT");
+//     if(scope[deepness[deepness.length - 1] + 1]) {
+//         deepness[deepness.length - 1]++;
+//         return scope[deepness[deepness.length - 1]];
+//     }
+//     if(deepness.length > 1) {
+//         deepness.pop();
+//         return getNext(false, code, deepness);
+//     }
+//     return null;
+// }
+//
+// function cb(res) {
+//     var elem = getNext(res, code, deepness);
+//     if (!elem) {
+//         console.log("DONE. Actions : ", actions);
+//         return null;
+//     }
+//     console.log("Elem : ", elem, ", deepness : ", deepness);
+//     if(elem.type == "action") {
+//         actions.push(elem.name);
+//         return cb(false);
+//     }
+//     else if(elem.type == "statement") {
+//         console.log("STATEMENT : ", elem.cond);
+//         jexl.eval(elem.cond, context).then(cb);
+//     }
+// }
+
+// function cb(res) {
+//     var scope = code;
+//     if(!res) {
+//         if(deepness.length > 0) {
+//             console.log("Statement false => GOING BACK");
+//             deepness.pop();
+//         }
+//         deepness[deepness.length - 1]++;
+//     }
+//     else
+//         console.log("Statement true => KEEP GOING");
+//     var pos = deepness[deepness.length - 1];
+//     for(var i = 0; deepness[i + 1] != undefined; i++) {
+//         if(scope[deepness[i]].type == "statement") {
+//             scope = scope[deepness[i]].code;
+//         }
+//     }
+//     console.log("pos : ", pos, ", scope : ", scope);
+//     if(scope[pos].type == "action") {
+//         actions.push(scope[pos].name);
+//         deepness[deepness.length - 1]++;
+//         return cb(res);
+//     }
+//     if(scope[pos].type == "statement") {
+//         console.log("GOING DEEPER on statement : ", scope[pos].cond);
+//         deepness.push(0);
+//         jexl.eval(scope[pos].cond, context).then(cb);
+//     }
+// }

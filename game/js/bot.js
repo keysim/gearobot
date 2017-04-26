@@ -13,6 +13,8 @@ class Bot {
         this.mp = 3;
         this.ap = 6;
         this.enemy = null;
+        this.actions = [];
+        this.item = null;
     }
     init () {
         if(this.player == 1)
@@ -27,83 +29,66 @@ class Bot {
         this.sprite.body.moves = false;
     }
     update(){
-        if(m.tick != this.tick && g.turn == "player" + this.player && g.started){
-            console.log("CODE STARTED", g[g.turn]);
-            if(g[g.turn].length == 0)
-                this.pass();
-            else
-                this.play(g[g.turn]);
-            // if(!value) {
-            //     console.log("Nothing to do !");
-            //     this.pass();
-            // }
+        if(m.tick != this.tick && g.turn == "player" + this.player){
+            if(g.started){
+                g.started = false;
+                var self = this;
+                this.updateContext();
+                this.play(g[g.turn], function (actions) {
+                    console.log(actions);
+                    self.actions = actions;
+                    if(!actions.length)
+                        self.pass();
+                });
+            }
+            if(this.actions.length > 0){
+                var action = this.actions.shift();
+                this[action]();
+                this.actions = [];
+                if(!this.actions.length)
+                    this.pass();
+            }
         }
         this.bubble.update();
         if(m.tick != this.tick)
             this.tick = m.tick;
     }
-
-    play(code){
-        var deepness = [0];
-        var self = this;
-        var readScope = function(res) {
-            var scope = code;
-            if(!res) {// || !scope[profondeur[profondeur.length - 1] + 1]
-                if(deepness.length > 0) {
-                    // console.log("Statement false => GOING BACK");
-                    deepness.pop();
-                }
-                deepness[deepness.length - 1]++;
+    updateContext(){
+        context.e_dist = map.getPath(this.x, this.y, this.enemy.x, this.enemy.y).length - 2;
+        context.s_cell = this.x + this.y * map.w;
+        context.e_cell = this.enemy.x + this.enemy.y * map.w;
+        context.e_item = this.enemy.item;
+        context.e_x = this.enemy.x;
+        context.e_y = this.enemy.y;
+        // context.i_damage
+        // context.i_range
+        context.s_ap = this.ap;
+        context.m_h = map.h;
+        context.s_item = this.item;
+        context.s_mp = this.mp;
+        context.m_w = map.w;
+        context.s_x = this.x;
+        context.s_y = this.y;
+        //console.log(context);
+    }
+    play(code, then){
+        console.log("COMPILATION PLAYER ", this.player, "...");
+        var deepness = [];
+        var actions = [];
+        var readCode = function (res) {
+            var elem = getNextElem(res, code, deepness);
+            if (!elem) {
+                then(actions);
+                return null;
             }
-            //else
-                //console.log("Statement true => KEEP GOING");
-            var pos = deepness[deepness.length - 1];
-            for(var i = 0; deepness[i + 1] != undefined; i++) {
-                if(scope[deepness[i]].type == "statement") {
-                    scope = scope[deepness[i]].code;
-                }
+            if(elem.type == "action") {
+                actions.push(elem.name);
+                return readCode(false);
             }
-            //console.log("pos : ", pos, ", scope : ", scope);
-            if(scope[pos].type == "action") {
-                //console.log("FOUND ACTION : ", scope[pos].name);
-                self[scope[pos].name]();
-                if(self.ap - scope[pos].ap < 0 || self.mp - scope[pos].mp < 0){
-                    console.log("No enough points...");
-                    self.pass();
-                    return "EMPTY";
-                }
-                self.ap -= scope[pos].ap;
-                self.mp -= scope[pos].mp;
-                return "FOUND";
-            }
-            if(scope[pos].type == "statement") {
-                //console.log("GOING DEEPER on statement : ", scope[pos].cond);
-                deepness.push(0);
-                jexl.eval(scope[pos].cond, context).then(readScope);
-            }
+            else if(elem.type == "statement")
+                jexl.eval(elem.cond, context).then(readCode);
         };
-        readScope(42);
-        // for(var i = 0; code[i]; i++){
-        //     if(code[i].type == "statement"){ // IF FOUND
-        //         jexl.evalAsync(code[i].cond, {}).then(function(res) {
-        //             console.log(res);
-        //             if(res)
-        //                 return play(code[i].code);
-        //             return null;
-        //         });
-        //     }
-        //     if(code[i].type == "action"){
-        //         if(this.ap - code[i].ap < 0 || this.mp - code[i].mp < 0){
-        //             console.log("No enough points...");
-        //             this.pass();
-        //             return 1;
-        //         }
-        //         this[code[i].name]();
-        //         this.ap -= code[i].ap;
-        //         this.mp -= code[i].mp;
-        //         return 1;
-        //     }
-        // }
+        readCode(true);
         return 0;
     }
     pass(){
@@ -113,6 +98,7 @@ class Bot {
             g.turn = "player1";
         this.ap = 6;
         this.mp = 3;
+        g.started = true;
     }
     move(x, y) {
         var arrival = map.getBlock(this.x + x, this.y + y, true);
@@ -132,11 +118,29 @@ class Bot {
     }
     moveToward(){
         var path = map.getPath(this.x, this.y, this.enemy.x, this.enemy.y);
-        //if(path.length > 2) {
-            this.rot(this.getDir(path[1][0] - this.x, path[1][1] - this.y));
-            this.move(path[1][0] - this.x, path[1][1] - this.y);
-            sort = true;
-        //}
+        this.rot(this.getDir(path[1][0] - this.x, path[1][1] - this.y));
+        this.move(path[1][0] - this.x, path[1][1] - this.y);
+        sort = true;
+    }
+    moveBackward(){
+        var path = map.getPath(this.x, this.y, this.enemy.x, this.enemy.y);
+        if(map.getBlock(this.x + 1, this.y) == "empty" && path.length < map.getPath(this.x + 1, this.y, this.enemy.x, this.enemy.y).length) {
+            this.rot(this.getDir(1, 0));
+            this.move(1, 0);
+        }
+        else if(map.getBlock(this.x - 1, this.y) == "empty" && path.length < map.getPath(this.x - 1, this.y, this.enemy.x, this.enemy.y).length) {
+            this.rot(this.getDir(-1, 0));
+            this.move(-1, 0);
+        }
+        else if(map.getBlock(this.x, this.y + 1) == "empty" && path.length < map.getPath(this.x, this.y + 1, this.enemy.x, this.enemy.y).length) {
+            this.rot(this.getDir(0, 1));
+            this.move(0, 1);
+        }
+        else if(map.getBlock(this.x, this.y - 1) == "empty" && path.length < map.getPath(this.x, this.y - 1, this.enemy.x, this.enemy.y).length) {
+            this.rot(this.getDir(0, -1));
+            this.move(0, -1);
+        }
+        sort = true;
     }
     stab(){
         console.log("STABED !");
@@ -155,4 +159,32 @@ class Bot {
         this.dir = dir;
         this.sprite.frame = this.rotMap.indexOf(dir);
     }
+}
+
+// var code = code1;
+// var steps = [];
+// var deepness = [];
+
+function getNextElem(res, code, deepness) { // Res is : true or false
+    var scope = code;
+    for (var i = 0; deepness[i + 1] != undefined; i++)
+        if(scope[deepness[i]].type == "statement")
+            scope = scope[deepness[i]].code;
+    if(deepness.length == 0) { // first time only to fill deepness
+        deepness.push(0);
+        return scope[0];
+    }
+    if(res && scope[deepness[deepness.length - 1]].code.length > 0){
+        deepness.push(0);
+        return scope[deepness[deepness.length - 2]].code[0];
+    }
+    if(scope[deepness[deepness.length - 1] + 1]) {
+        deepness[deepness.length - 1]++;
+        return scope[deepness[deepness.length - 1]];
+    }
+    if(deepness.length > 1) {
+        deepness.pop();
+        return getNextElem(false, code, deepness);
+    }
+    return null;
 }

@@ -1,19 +1,30 @@
 class Menu {
     constructor(){
         //$(".debug").hide();
+        $('.modal').modal({
+                ready: function(modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
+                },
+                complete: function() {// Callback for Modal close
+                    g.time = m.time;
+                    g.codeTime = true;
+                    console.log("Let's code " + g.turn + " !");
+                }
+            }
+        );
+        $(".button-collapse").sideNav();
+        $('.dropdown-button').dropdown();
         Menu.init();
         setInterval(Menu.timer, 1000);
     }
     static reload(){
         game.state.start('Boot');
         m.plants = $('input[name=nbPlants]:checked').val();
+        m.time = $('input[name=nbTime]:checked').val();
     }
     static init(){
-        $(".time").text(m.time).hide();
+        $(".time").text(m.time + " seconds").hide();
         if(m.type != "biome" && m.type != "random")
             $("#biomeParams").hide();
-        $(".button-collapse").sideNav();
-        $('.dropdown-button').dropdown();
         $(".type").click(function () {
             $("#typeBtn").html($(this).html());
             $('.dropdown-button').dropdown('close');
@@ -30,19 +41,19 @@ class Menu {
             Menu.reload();
         });
         $("#play").click(function () {
+            m.plants = $('input[name=nbPlants]:checked').val();
+            m.time = $('input[name=nbTime]:checked').val();
+            $("#playText").text("Continue");
+            g.codeTime = false;
+            g.started = false;
+            g.time = m.time;
+            $(".time").text(m.time + " seconds");
+            $(".player").removeClass("player2").addClass("player1").text("Player 1");
             Menu.openIDE();
-            setTimeout(function () {
-                if (confirm("Are you ready ? Player 1 turn (" + m.time + "s)")) {
-                    g.time = m.time;
-                    g.started = false;
-                    g.turn = "player1";
-                    console.log("let's PLAYYYYYY");
-                }
-                else {
-                    Menu.openGAME();
-                    g.time = 0;
-                }
-            },500);
+            $('#turnModal').modal('open');
+        });
+        $('#quit').click(function() {
+            location.reload();
         });
         $(document).keyup(function(e) {
             if (e.keyCode == 27)// escape
@@ -71,27 +82,24 @@ class Menu {
         $("#GameView").show();
     }
     static timer() {
-        if(g.time > 0) {
+        if(g.time > 0 && g.codeTime) {
             g.time--;
-            $(".time").text(g.time);
+            $(".time").text(g.time + " seconds");
             if(g.time <= 0){
                 $("#main").empty();
                 if(g.turn == "player2"){
                     g.turn = "player1";
+                    g.codeTime = false;
                     g.started = true;
                     Menu.openGAME();
                 }
                 else {
-                    setTimeout(function () {
-                        if (confirm("Are you ready ? Player 2 turn (" + m.time + "s)")) {
-                            g.time = m.time;
-                            g.turn = "player2";
-                            console.log("let's PLAYYYYYY");
-                        }
-                        else{
-                            Menu.openGAME();
-                        }
-                    }, 500);
+                    $(".player").removeClass("player1").addClass("player2").text("Player 2");
+                    g.codeTime = false;
+                    g.time = m.time;
+                    $(".time").text(m.time + " seconds");
+                    g.turn = "player2";
+                    $('#turnModal').modal('open');
                 }
             }
         }

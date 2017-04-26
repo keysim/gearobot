@@ -240,6 +240,18 @@ nav ul li.active {
     margin-bottom: 15px !important;
 }
 
-.time {
-    margin-right: 50px;
+nav .nav-wrapper {
+    padding-right: 20px;
+}
+
+.player1 {
+    color: red;
+}
+
+.player2 {
+    color: blue;
+}
+
+.italic {
+    font-style: italic;
 }

@@ -27,7 +27,7 @@ Made from the original [**Isometric tiles texture**](http://opengameart.org/cont
 
 ![Image of the tiles](https://raw.githubusercontent.com/keysim/gearobot/master/doc/img/mapTiles.png)
 
-#### 3 types of map :
+#### 3 defaults types of map :
 
 ![Image of the maps](https://raw.githubusercontent.com/keysim/gearobot/master/doc/img/maps.png)
 
@@ -45,7 +45,7 @@ Here is two kind of bubble you can see appearing when the AI is going in a wrong
 # Installation
 
 ### Specifications :
-- Hardware - 1 CPU, 512 Mo RAM, 40 Go Storage
+- Hardware - 1 CPU, 512 Mo RAM, 5 Go Storage
 - Software - NodeJS, npm and Git
 
 Installation through Git commands :
@@ -61,8 +61,16 @@ Now that your server started, you can simply go on your browser to this url :
 ```
 
 Made with :
-* [phaser.io](http://phaser.io) - Javasript Game Framework
+* [phaser.io](http://phaser.io) - Javascript Game Framework
 * [isometric plugin](http://rotates.org/phaser/iso) - Phaser isometric plugin
+* [Materializecss](http://materializecss.com) - Responsive UI framework based on Material Design
+* [Jquery](https://jquery.com) - JavaScript library for DOM manipulations
+* [JqueryUI](https://jqueryui.com/) - Jquery plugin used for drag and drop functionality
+
+
+The extra component we used :
+* [pathFinding](https://qiao.github.io/PathFinding.js/visual) - Javascript path finding
+* [Jexl eval](https://github.com/TechnologyAdvice/Jexl) - Javascript expression evaluation
 
 
 ## Authors & Contributors
