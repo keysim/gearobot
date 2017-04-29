@@ -99,9 +99,9 @@ The extra component we used :
 - And so on...
 
 ## Authors & Contributors
-[![Keysim](https://raw.githubusercontent.com/keysim/gearobot/master/doc/img/keysim.png)](http://keysim.fr) | [![Vireth](https://raw.githubusercontent.com/keysim/gearobot/master/doc/img/vireth.png)](http://vireth.com)
----|---
-[Simon Menard](keysim.fr) | [Vireth Thach sok](vireth.com)
+[![Keysim](https://raw.githubusercontent.com/keysim/gearobot/master/doc/img/keysim.png)](http://keysim.fr) | [![Vireth](https://raw.githubusercontent.com/keysim/gearobot/master/doc/img/vireth.png)](http://vireth.com) | [![Jean Luc](https://raw.githubusercontent.com/keysim/gearobot/master/doc/img/tang.png)](http://keysim.fr)
+---|---|---
+[Simon Menard](keysim.fr) | [Vireth Thach sok](vireth.com) | [Jean Luc Tang](keysim.fr)
 
 **A special thanks to the Leekwar community and my wonderful girlfriend who gave me some ideas.**
 

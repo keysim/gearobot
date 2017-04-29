@@ -4,14 +4,13 @@
     {"name":"moveBackward", "p":1, "type":"m", "argc":0, "argv":null},
     {"name":"stab", "p":1, "type":"a", "argc":0, "argv":null}
   ],
-  "utils" : [
-    {"name":"random", "type":"Number", "argc":2, "argv":["Number", "Number"]},
-    {"name":"getClosestItem", "type":"Cell", "argc":1, "argv":["Number"]}
-  ],
   "variables": [
     {"name":"self", "data":["x", "y", "cell", "ap", "mp", "item"]},
     {"name":"enemy", "data":["dist", "x", "y", "cell", "item"]},
     {"name":"map", "data":["w", "h"]},
     {"name":"", "data":["<< custom >>"]}
+  ],
+  "statements": [
+    {"name":"if"}
   ]
 }

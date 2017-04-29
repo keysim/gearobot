@@ -80,65 +80,36 @@ game.state.add('Boot', BasicGame.Boot);
 game.state.start('Boot');
 
 context = {};
-var code1 = [
+var test =
+[
+    {
+        type: "action",
+        name: "moveToward"
+    },
     {
         type:"statement",
-        cond: "1 < 2",
+        cond: "e_dist > 1",
         code: [
             {
-                type:"statement",
-                cond: "1 < 2",
-                code:[
-                    {
-                        type:"statement",
-                        cond: "1 < 2",
-                        code:[]
-                    },
-                    {
-                        type:"statement",
-                        cond: "1 < 2",
-                        code:[{
-                            type: "action",
-                            name: "NUKE"
-                        }]
-                    },
-                    {
-                        type: "action",
-                        name: "move"
-                    },
-                    {
-                        type: "action",
-                        name: "move 2"
-                    },
-                    {
-                        type:"statement",
-                        cond: "1 > 2",
-                        code:[{
-                            type: "action",
-                            name: "NUKE 2"
-                        }]
-                    }
-                ]
+                type: "action",
+                name: "moveToward"
             },
             {
-                type: "action",
-                name: "stab_neck"
-            }
-        ]
-    },
-    {
-        type:"statement",
-        cond: "1 > 2",
-        code: [
+                type:"statement",
+                cond: "m_w - 1 == s_x | m_h - 1 == s_y",
+                code:[]
+            },
             {
-                type: "action",
-                name: "move_back"
+                type:"statement",
+                cond: "e_dist == 1",
+                code: [
+                    {
+                        type: "action",
+                        name: "stab"
+                    }
+                ]
             }
         ]
-    },
-    {
-        type:"action",
-        name: "stab"
     }
 ];
 
