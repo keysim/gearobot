@@ -3,8 +3,8 @@
 GeaRobot is a browser-based bot fighting game in which you program your artificial intelligence to successfully defeat your enemy.
 
 ## Motivation and ambition
-The project was born during a Game design course at Beijing Jiaotong University in China between two students who wanted to create a game entirely based on programming. I (KeySim) dream to make a programming game since the first time I started to learn programming languages. In love with programmation, I wanted to share it through an easy access game so everybody can join and try it.
-GeaRobot's ambition is to place programming in the middle of a funny, entertaining, playful browser-based video game so everybody even beginners can enjoy programmation and hopefully start learning programming languages afterward.
+The project was born during a Game design course at Beijing Jiaotong University in China. I wanted to create a game entirely based on programming. I dream to make a programming game since the first time I started to learn programming languages. In love with programming languages, I wanted to share it through an easy access game so everybody can join and try it.
+GeaRobot's ambition is to place programming in the middle of a funny, entertaining, playful browser-based video game so everybody even beginners can enjoy programming and hopefully start learning real programming languages afterward.
 
 
 # The game (You loosed)
@@ -99,9 +99,9 @@ The extra component we used :
 - And so on...
 
 ## Authors & Contributors
-[![Keysim](https://raw.githubusercontent.com/keysim/gearobot/master/doc/img/keysim.png)](http://keysim.fr) | [![Vireth](https://raw.githubusercontent.com/keysim/gearobot/master/doc/img/vireth.png)](http://vireth.com) | [![Jean Luc](https://raw.githubusercontent.com/keysim/gearobot/master/doc/img/tang.png)](http://keysim.fr)
----|---|---
-[Simon Menard](keysim.fr) | [Vireth Thach sok](vireth.com) | [Jean Luc Tang](keysim.fr)
+[![Keysim](https://raw.githubusercontent.com/keysim/gearobot/master/doc/img/keysim.png)](http://keysim.fr)
+---
+[Simon Menard](keysim.fr)
 
 **A special thanks to the Leekwar community and my wonderful girlfriend who gave me some ideas.**
 
