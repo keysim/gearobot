@@ -1,4 +1,4 @@
-![Image of the bots](https://raw.githubusercontent.com/keysim/gearobot/master/doc/img/title.png)
+![Image of the bots](https://github.com/keysim/gearobot/blob/master/doc/img/title.png)
 ## Short
 GeaRobot is a browser-based bot fighting game in which you program your artificial intelligence to successfully defeat your enemy.
 
