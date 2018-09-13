@@ -7,7 +7,7 @@ The project was born during a Game design course at Beijing Jiaotong University 
 GeaRobot's ambition is to place programming in the middle of a funny, entertaining, playful browser-based video game so everybody even beginners can enjoy programming and hopefully start learning real programming languages afterward.
 
 
-# The game (You loosed)
+# The game
 
 ## Description
 The main idea of the game is to create with a high level programming language an artificial intelligence of a little Gear Bot. 
