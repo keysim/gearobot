@@ -27,18 +27,18 @@ The bot is the character that will be executing actions of the player's script.
 
 The character has been made by myself :
 
-![Image of the bots](https://raw.githubusercontent.com/keysim/gearobot/master/doc/img/botDesign.png)
+![Image of the bots](https://github.com/keysim/gearobot/blob/master/doc/img/botDesign.png)
 
 The last two characters are the two players chosen to be in the game.
 
 ## Maps
 Made from the original [**Isometric tiles texture**](http://opengameart.org/content/isometric-tileset) of TheValar and a bit modified by myself.
 
-![Image of the tiles](https://raw.githubusercontent.com/keysim/gearobot/master/doc/img/mapTiles.png)
+![Image of the tiles](https://github.com/keysim/gearobot/blob/master/doc/img/mapTiles.png)
 
 #### 3 defaults types of map :
 
-![Image of the maps](https://raw.githubusercontent.com/keysim/gearobot/master/doc/img/maps.png)
+![Image of the maps](https://github.com/keysim/gearobot/blob/master/doc/img/maps.png)
 
 Specifications :
 * The soil under the tree or the bush will change to grass if he is in the grass biome
@@ -99,7 +99,7 @@ The extra component we used :
 - And so on...
 
 ## Authors & Contributors
-[![Keysim](https://raw.githubusercontent.com/keysim/gearobot/master/doc/img/keysim.png)](http://keysim.fr)
+[![Keysim](https://github.com/keysim/gearobot/blob/master/doc/img/keysim.png)](http://keysim.fr)
 ---
 [Simon Menard](keysim.fr)
 
